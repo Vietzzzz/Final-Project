@@ -63,9 +63,9 @@
             this.main_panel.Controls.Add(this.description_content);
             this.main_panel.Controls.Add(this.main_function_textbox);
             this.main_panel.Controls.Add(this.description_home);
-            this.main_panel.Location = new System.Drawing.Point(49, 71);
+            this.main_panel.Location = new System.Drawing.Point(24, 71);
             this.main_panel.Name = "main_panel";
-            this.main_panel.Size = new System.Drawing.Size(902, 538);
+            this.main_panel.Size = new System.Drawing.Size(940, 538);
             this.main_panel.TabIndex = 3;
             // 
             // panel3
@@ -193,12 +193,13 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(46, 8);
+            this.label1.Location = new System.Drawing.Point(24, 9);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(423, 59);
             this.label1.TabIndex = 2;
             this.label1.Text = "Welcome To Droppi";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox3
             // 

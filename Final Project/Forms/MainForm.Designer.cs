@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(249, 658);
+            this.panel1.Size = new System.Drawing.Size(261, 658);
             this.panel1.TabIndex = 2;
             // 
             // company_name
@@ -141,7 +141,8 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(49, 41);
+            this.pictureBox1.Image = global::Final_Project.Properties.Resources.inventory;
+            this.pictureBox1.Location = new System.Drawing.Point(55, 41);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -181,8 +182,8 @@
             this.exit_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exit_button.Dock = System.Windows.Forms.DockStyle.Right;
             this.exit_button.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(62)))), ((int)(((byte)(135)))));
-            this.exit_button.Location = new System.Drawing.Point(961, 0);
+            this.exit_button.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.exit_button.Location = new System.Drawing.Point(949, 0);
             this.exit_button.Name = "exit_button";
             this.exit_button.Size = new System.Drawing.Size(36, 42);
             this.exit_button.TabIndex = 8;
@@ -193,9 +194,9 @@
             // 
             this.panel2.Controls.Add(this.exit_button);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(249, 0);
+            this.panel2.Location = new System.Drawing.Point(261, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(997, 42);
+            this.panel2.Size = new System.Drawing.Size(985, 42);
             this.panel2.TabIndex = 9;
             // 
             // errorProvider1
@@ -205,25 +206,25 @@
             // product_usercontrol
             // 
             this.product_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.product_usercontrol.Location = new System.Drawing.Point(249, 42);
+            this.product_usercontrol.Location = new System.Drawing.Point(261, 42);
             this.product_usercontrol.Name = "product_usercontrol";
-            this.product_usercontrol.Size = new System.Drawing.Size(997, 616);
+            this.product_usercontrol.Size = new System.Drawing.Size(985, 616);
             this.product_usercontrol.TabIndex = 10;
             // 
             // transaction_usercontrol
             // 
             this.transaction_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.transaction_usercontrol.Location = new System.Drawing.Point(249, 42);
+            this.transaction_usercontrol.Location = new System.Drawing.Point(261, 42);
             this.transaction_usercontrol.Name = "transaction_usercontrol";
-            this.transaction_usercontrol.Size = new System.Drawing.Size(997, 616);
+            this.transaction_usercontrol.Size = new System.Drawing.Size(985, 616);
             this.transaction_usercontrol.TabIndex = 11;
             // 
             // home_usercontrol
             // 
             this.home_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.home_usercontrol.Location = new System.Drawing.Point(249, 42);
+            this.home_usercontrol.Location = new System.Drawing.Point(261, 42);
             this.home_usercontrol.Name = "home_usercontrol";
-            this.home_usercontrol.Size = new System.Drawing.Size(997, 616);
+            this.home_usercontrol.Size = new System.Drawing.Size(985, 616);
             this.home_usercontrol.TabIndex = 12;
             // 
             // MainForm

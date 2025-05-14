@@ -12,5 +12,8 @@ namespace Final_Project.BussinessLogic.Interfaces
         int AddProduct(Product product);
         List<Product> GetAllProducts();
         int DeleteProduct(Product product);
+        List<Product> SearchProducts(string name = null, string category = null,
+                                     string unit = null, int? price = null,
+                                     int? quantity = null, int? weight = null);
     }
 }

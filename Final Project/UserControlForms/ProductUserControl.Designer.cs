@@ -120,7 +120,6 @@
             this.category_label.Size = new System.Drawing.Size(85, 23);
             this.category_label.TabIndex = 8;
             this.category_label.Text = "Category:";
-            this.category_label.Click += new System.EventHandler(this.category_label_Click);
             // 
             // unit_label
             // 
@@ -132,7 +131,6 @@
             this.unit_label.Size = new System.Drawing.Size(46, 23);
             this.unit_label.TabIndex = 6;
             this.unit_label.Text = "Unit:";
-            this.unit_label.Click += new System.EventHandler(this.unit_label_Click);
             // 
             // unit_textbox
             // 
@@ -155,7 +153,6 @@
             this.price_label.Size = new System.Drawing.Size(51, 23);
             this.price_label.TabIndex = 4;
             this.price_label.Text = "Price:";
-            this.price_label.Click += new System.EventHandler(this.price_label_Click);
             // 
             // category_textbox
             // 
@@ -178,7 +175,6 @@
             this.quantity_label.Size = new System.Drawing.Size(81, 23);
             this.quantity_label.TabIndex = 2;
             this.quantity_label.Text = "Quantity:";
-            this.quantity_label.Click += new System.EventHandler(this.quantity_label_Click);
             // 
             // name_textbox
             // 
@@ -254,7 +250,6 @@
             this.quantity_textbox.Name = "quantity_textbox";
             this.quantity_textbox.Size = new System.Drawing.Size(155, 30);
             this.quantity_textbox.TabIndex = 18;
-            this.quantity_textbox.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // weight_textbox
             // 
@@ -314,6 +309,7 @@
             this.search_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.search_button.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.search_button.UseVisualStyleBackColor = false;
+            this.search_button.Click += new System.EventHandler(this.search_button_Click);
             // 
             // update_product_button
             // 

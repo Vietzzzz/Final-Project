@@ -47,7 +47,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(24)))), ((int)(((byte)(216)))));
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.register_button);
             this.panel1.Controls.Add(this.register_label);
             this.panel1.Controls.Add(this.company_name);
@@ -66,7 +66,7 @@
             this.register_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.register_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.register_button.Font = new System.Drawing.Font("Segoe UI", 7.8F);
-            this.register_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(62)))), ((int)(((byte)(135)))));
+            this.register_button.ForeColor = System.Drawing.Color.Black;
             this.register_button.Location = new System.Drawing.Point(71, 523);
             this.register_button.Name = "register_button";
             this.register_button.Size = new System.Drawing.Size(99, 49);
@@ -101,7 +101,7 @@
             // 
             this.logo_picture_box.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.logo_picture_box.BackColor = System.Drawing.Color.White;
-            this.logo_picture_box.Image = global::Final_Project.Properties.Resources.logistics;
+            this.logo_picture_box.Image = global::Final_Project.Properties.Resources.inventory;
             this.logo_picture_box.Location = new System.Drawing.Point(49, 73);
             this.logo_picture_box.Name = "logo_picture_box";
             this.logo_picture_box.Size = new System.Drawing.Size(150, 150);
@@ -113,7 +113,7 @@
             // 
             this.exit_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exit_button.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(62)))), ((int)(((byte)(135)))));
+            this.exit_button.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.exit_button.Location = new System.Drawing.Point(714, 0);
             this.exit_button.Name = "exit_button";
             this.exit_button.Size = new System.Drawing.Size(36, 41);
@@ -123,7 +123,7 @@
             // 
             // login_button
             // 
-            this.login_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(24)))), ((int)(((byte)(216)))));
+            this.login_button.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.login_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.login_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.login_button.FlatAppearance.BorderSize = 0;
@@ -162,7 +162,7 @@
             // 
             this.password_label.AutoSize = true;
             this.password_label.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(24)))), ((int)(((byte)(216)))));
+            this.password_label.ForeColor = System.Drawing.Color.Black;
             this.password_label.Location = new System.Drawing.Point(290, 323);
             this.password_label.Name = "password_label";
             this.password_label.Size = new System.Drawing.Size(97, 28);
@@ -173,7 +173,7 @@
             // 
             this.username_label.AutoSize = true;
             this.username_label.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(24)))), ((int)(((byte)(216)))));
+            this.username_label.ForeColor = System.Drawing.Color.Black;
             this.username_label.Location = new System.Drawing.Point(290, 224);
             this.username_label.Name = "username_label";
             this.username_label.Size = new System.Drawing.Size(104, 28);
@@ -184,7 +184,7 @@
             // 
             this.login_acc_label.AutoSize = true;
             this.login_acc_label.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login_acc_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(24)))), ((int)(((byte)(216)))));
+            this.login_acc_label.ForeColor = System.Drawing.Color.Black;
             this.login_acc_label.Location = new System.Drawing.Point(286, 108);
             this.login_acc_label.Name = "login_acc_label";
             this.login_acc_label.Size = new System.Drawing.Size(292, 54);

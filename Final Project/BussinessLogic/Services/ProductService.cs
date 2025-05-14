@@ -47,5 +47,35 @@ namespace Final_Project.BussinessLogic.Services
 
             return _productRepository.DeleteProduct(product);
         }
+        public List<Product> SearchProducts(string name = null, string category = null,
+                                     string unit = null, int? price = null,
+                                     int? quantity = null, int? weight = null)
+        {
+            // Kiểm tra dữ liệu đầu vào nếu cần
+            if (quantity.HasValue && quantity < 0)
+            {
+                throw new ArgumentException("Quantity must >= 0");
+            }
+
+            if (price.HasValue && quantity < 0)
+            {
+                throw new ArgumentException("Price must >= 0");
+            }
+
+            if (weight.HasValue && weight < 0)
+            {
+                throw new ArgumentException("Weight must >= 0");
+            }
+
+            // Gọi đến repository để thực hiện tìm kiếm
+            return _productRepository.SearchProducts(
+                name,
+                category,
+                unit,
+                price,
+                quantity,
+                weight
+            );
+        }
     }
 }

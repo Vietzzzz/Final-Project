@@ -94,5 +94,95 @@ namespace Final_Project.DataAccess.Repositories
                 }
             }
         }
+        // Search Product
+        public List<Product> SearchProducts(string name = null, string category = null,
+                                     string unit = null, int? price = null,
+                                     int? quantity = null, int? weight = null)
+        {
+            List<Product> products = new List<Product>();
+            StringBuilder queryBuilder = new StringBuilder();
+            List<NpgsqlParameter> parameters = new List<NpgsqlParameter>();
+
+            // Truy vấn cơ bản
+            queryBuilder.Append("SELECT * FROM product WHERE 1=1");
+
+            // Thêm điều kiện tìm kiếm theo tên sản phẩm
+            if (!string.IsNullOrEmpty(name))
+            {
+                queryBuilder.Append(" AND product_name ILIKE @productName");
+                parameters.Add(new NpgsqlParameter("@productName", "%" + name + "%"));
+            }
+
+            if (!string.IsNullOrEmpty(category))
+            {
+                queryBuilder.Append(" AND product_name ILIKE @productName");
+                parameters.Add(new NpgsqlParameter("@productName", "%" + category + "%"));
+            }
+
+            if (!string.IsNullOrEmpty(unit))
+            {
+                queryBuilder.Append(" AND product_name ILIKE @productName");
+                parameters.Add(new NpgsqlParameter("@productName", "%" + unit + "%"));
+            }
+
+            // Thêm điều kiện tìm kiếm theo giá
+            if (price.HasValue)
+            {
+                queryBuilder.Append(" AND price = @price");
+                parameters.Add(new NpgsqlParameter("@price", price.Value));
+            }
+
+            // Thêm điều kiện tìm kiếm theo cân nặng
+            if (quantity.HasValue)
+            {
+                queryBuilder.Append(" AND quantity = @quantity");
+                parameters.Add(new NpgsqlParameter("@quantity", quantity.Value));
+            }
+
+            // Thêm điều kiện tìm kiếm theo số lượng
+            if (weight.HasValue)
+            {
+                queryBuilder.Append(" AND weight = @weight");
+                parameters.Add(new NpgsqlParameter("@weight", weight.Value));
+            }
+
+            using (var conn = dbContext.GetConnection())
+            {
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(queryBuilder.ToString(), conn))
+                {
+                    // Thêm tất cả tham số vào command
+                    foreach (var parameter in parameters)
+                    {
+                        cmd.Parameters.Add(parameter);
+                    }
+
+                    using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Product product = new Product
+                            {
+                                ProductId = reader.GetInt32(0),
+                                ProductName = reader.GetString(1),
+                                Unit = reader.GetString(2),
+                                Quantity = reader.GetInt32(3),
+                                Price = reader.GetInt32(4),
+                                CreatedDate = reader.GetDateTime(5),
+                                UpdateDate = reader.GetDateTime(6),
+                                Category = reader.GetString(7),
+                                Weight = reader.GetInt32(8)
+                                // Thêm các thuộc tính khác tùy thuộc vào cấu trúc bảng của bạn
+                            };
+
+                            products.Add(product);
+                        }
+                    }
+                }
+            }
+
+            return products;
+        }
     }
 }

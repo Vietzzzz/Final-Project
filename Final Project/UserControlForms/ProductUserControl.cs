@@ -28,7 +28,7 @@ namespace Final_Project.UserControlForms
                 LoadProductService();
                 // Khởi tạo DataGridView
                 DisplayProduct(_productService.GetAllProducts());
-            }    
+            }
         }
         private void DisplayProduct(List<Product> products)
         {
@@ -97,30 +97,19 @@ namespace Final_Project.UserControlForms
             _productService = new ProductService(productRepository);
             _product = new Product(); // Tạo mới đối tượng product
         }
-
-        private void unit_label_Click(object sender, EventArgs e)
+        // Search product
+        private void search_button_Click(object sender, EventArgs e)
         {
+            string name = name_textbox.Text;
+            string category = category_textbox.Text;
+            string unit = unit_textbox.Text;
 
-        }
+            int? price = price_textbox.Value > 0 ? (int?)price_textbox.Value : null;
+            int? quantity = quantity_textbox.Value > 0 ? (int?)quantity_textbox.Value : null;
+            int? weight = weight_textbox.Value > 0 ? (int?)weight_textbox.Value : null; 
 
-        private void quantity_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void category_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void price_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
+            List<Product> products = _productService.SearchProducts(name, category, unit, price, quantity, weight);
+            DisplayProduct(products);
         }
     }
 }
