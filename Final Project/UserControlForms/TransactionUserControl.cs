@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Final_Project
+namespace Final_Project.UserControlForms
 {
-    public partial class Form1 : Form
+    public partial class TransactionUserControl : UserControl
     {
-        public Form1()
+        public TransactionUserControl()
         {
             InitializeComponent();
         }
