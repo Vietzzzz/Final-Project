@@ -43,19 +43,19 @@
             this.name_textbox = new System.Windows.Forms.TextBox();
             this.name_label = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.price_textbox = new System.Windows.Forms.NumericUpDown();
-            this.quantity_textbox = new System.Windows.Forms.NumericUpDown();
             this.weight_textbox = new System.Windows.Forms.NumericUpDown();
+            this.quantity_textbox = new System.Windows.Forms.NumericUpDown();
+            this.price_textbox = new System.Windows.Forms.NumericUpDown();
             this.delete_button = new System.Windows.Forms.Button();
             this.search_button = new System.Windows.Forms.Button();
-            this.update_product_button = new System.Windows.Forms.Button();
+            this.import_button = new System.Windows.Forms.Button();
             this.add_product_button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.product_data_gridview)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.price_textbox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quantity_textbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weight_textbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quantity_textbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.price_textbox)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -206,7 +206,7 @@
             this.panel2.Controls.Add(this.price_textbox);
             this.panel2.Controls.Add(this.delete_button);
             this.panel2.Controls.Add(this.search_button);
-            this.panel2.Controls.Add(this.update_product_button);
+            this.panel2.Controls.Add(this.import_button);
             this.panel2.Controls.Add(this.add_product_button);
             this.panel2.Controls.Add(this.weight_label);
             this.panel2.Controls.Add(this.category_label);
@@ -222,20 +222,19 @@
             this.panel2.Size = new System.Drawing.Size(959, 218);
             this.panel2.TabIndex = 3;
             // 
-            // price_textbox
+            // weight_textbox
             // 
-            this.price_textbox.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.price_textbox.ForeColor = System.Drawing.Color.Black;
-            this.price_textbox.Location = new System.Drawing.Point(408, 37);
-            this.price_textbox.Maximum = new decimal(new int[] {
+            this.weight_textbox.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.weight_textbox.ForeColor = System.Drawing.Color.Black;
+            this.weight_textbox.Location = new System.Drawing.Point(408, 154);
+            this.weight_textbox.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
-            this.price_textbox.Name = "price_textbox";
-            this.price_textbox.Size = new System.Drawing.Size(155, 30);
-            this.price_textbox.TabIndex = 17;
-            this.price_textbox.ThousandsSeparator = true;
+            this.weight_textbox.Name = "weight_textbox";
+            this.weight_textbox.Size = new System.Drawing.Size(155, 30);
+            this.weight_textbox.TabIndex = 19;
             // 
             // quantity_textbox
             // 
@@ -251,19 +250,20 @@
             this.quantity_textbox.Size = new System.Drawing.Size(155, 30);
             this.quantity_textbox.TabIndex = 18;
             // 
-            // weight_textbox
+            // price_textbox
             // 
-            this.weight_textbox.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.weight_textbox.ForeColor = System.Drawing.Color.Black;
-            this.weight_textbox.Location = new System.Drawing.Point(408, 154);
-            this.weight_textbox.Maximum = new decimal(new int[] {
+            this.price_textbox.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.price_textbox.ForeColor = System.Drawing.Color.Black;
+            this.price_textbox.Location = new System.Drawing.Point(408, 37);
+            this.price_textbox.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
-            this.weight_textbox.Name = "weight_textbox";
-            this.weight_textbox.Size = new System.Drawing.Size(155, 30);
-            this.weight_textbox.TabIndex = 19;
+            this.price_textbox.Name = "price_textbox";
+            this.price_textbox.Size = new System.Drawing.Size(155, 30);
+            this.price_textbox.TabIndex = 17;
+            this.price_textbox.ThousandsSeparator = true;
             // 
             // delete_button
             // 
@@ -311,27 +311,28 @@
             this.search_button.UseVisualStyleBackColor = false;
             this.search_button.Click += new System.EventHandler(this.search_button_Click);
             // 
-            // update_product_button
+            // import_button
             // 
-            this.update_product_button.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.update_product_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.update_product_button.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.update_product_button.FlatAppearance.BorderSize = 0;
-            this.update_product_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
-            this.update_product_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.update_product_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.update_product_button.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.update_product_button.ForeColor = System.Drawing.Color.Black;
-            this.update_product_button.Image = global::Final_Project.Properties.Resources.ok;
-            this.update_product_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.update_product_button.Location = new System.Drawing.Point(625, 119);
-            this.update_product_button.Name = "update_product_button";
-            this.update_product_button.Size = new System.Drawing.Size(140, 65);
-            this.update_product_button.TabIndex = 10;
-            this.update_product_button.Text = "Update ";
-            this.update_product_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.update_product_button.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.update_product_button.UseVisualStyleBackColor = false;
+            this.import_button.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.import_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.import_button.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.import_button.FlatAppearance.BorderSize = 0;
+            this.import_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.import_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.import_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.import_button.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.import_button.ForeColor = System.Drawing.Color.Black;
+            this.import_button.Image = global::Final_Project.Properties.Resources.ok;
+            this.import_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.import_button.Location = new System.Drawing.Point(625, 119);
+            this.import_button.Name = "import_button";
+            this.import_button.Size = new System.Drawing.Size(140, 65);
+            this.import_button.TabIndex = 10;
+            this.import_button.Text = "Import";
+            this.import_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.import_button.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.import_button.UseVisualStyleBackColor = false;
+            this.import_button.Click += new System.EventHandler(this.import_button_Click);
             // 
             // add_product_button
             // 
@@ -369,9 +370,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.product_data_gridview)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.price_textbox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quantity_textbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.weight_textbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quantity_textbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.price_textbox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -379,7 +380,7 @@
         #endregion
 
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Button update_product_button;
+        private System.Windows.Forms.Button import_button;
         private System.Windows.Forms.Label weight_label;
         private System.Windows.Forms.Label product_infor_label;
         private System.Windows.Forms.Panel panel1;

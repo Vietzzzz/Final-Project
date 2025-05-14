@@ -12,6 +12,7 @@ using Final_Project.BussinessLogic.Services;
 using Final_Project.DataAccess;
 using Final_Project.DataAccess.Repositories;
 using Final_Project.Models;
+using Final_Project.Forms;
 
 namespace Final_Project.UserControlForms
 {
@@ -110,6 +111,12 @@ namespace Final_Project.UserControlForms
 
             List<Product> products = _productService.SearchProducts(name, category, unit, price, quantity, weight);
             DisplayProduct(products);
+        }
+
+        private void import_button_Click(object sender, EventArgs e)
+        {
+            PurchaseOrderForm purchaseOrderForm = new PurchaseOrderForm();
+            purchaseOrderForm.ShowDialog();
         }
     }
 }
