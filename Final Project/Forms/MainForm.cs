@@ -23,21 +23,21 @@ namespace Final_Project.Forms
 
         private void home_button_Click(object sender, EventArgs e)
         {
-            //home_usercontrol.Show();
-            //product_usercontrol.Hide();
-            //transaction_usercontrol.Hide();
+            home_usercontrol.Show();
+            product_usercontrol.Hide();
+            transaction_usercontrol.Hide();
         }
         private void product_button_Click(object sender, EventArgs e)
         {
-            //home_usercontrol.Hide();
-            //product_usercontrol.Show();
-            //transaction_usercontrol.Hide();
+            home_usercontrol.Hide();
+            product_usercontrol.Show();
+            transaction_usercontrol.Hide();
         }
         private void transaction_button_Click(object sender, EventArgs e)
         {
-            //home_usercontrol.Hide();
-            //product_usercontrol.Hide();
-            //transaction_usercontrol.Show();
+            home_usercontrol.Hide();
+            product_usercontrol.Hide();
+            transaction_usercontrol.Show();
         }
 
         private void productUserControl1_Load(object sender, EventArgs e)

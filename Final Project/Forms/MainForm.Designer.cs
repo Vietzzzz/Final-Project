@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.company_name = new System.Windows.Forms.Label();
             this.panel_txn = new System.Windows.Forms.Panel();
@@ -39,12 +40,17 @@
             this.product_btn = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.product_usercontrol = new Final_Project.UserControlForms.ProductUserControl();
+            this.transaction_usercontrol = new Final_Project.UserControlForms.TransactionUserControl();
+            this.home_usercontrol = new Final_Project.UserControlForms.Home();
             this.panel1.SuspendLayout();
             this.panel_txn.SuspendLayout();
             this.panel_home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_product.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -192,11 +198,42 @@
             this.panel2.Size = new System.Drawing.Size(997, 42);
             this.panel2.TabIndex = 9;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // product_usercontrol
+            // 
+            this.product_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.product_usercontrol.Location = new System.Drawing.Point(249, 42);
+            this.product_usercontrol.Name = "product_usercontrol";
+            this.product_usercontrol.Size = new System.Drawing.Size(997, 616);
+            this.product_usercontrol.TabIndex = 10;
+            // 
+            // transaction_usercontrol
+            // 
+            this.transaction_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.transaction_usercontrol.Location = new System.Drawing.Point(249, 42);
+            this.transaction_usercontrol.Name = "transaction_usercontrol";
+            this.transaction_usercontrol.Size = new System.Drawing.Size(997, 616);
+            this.transaction_usercontrol.TabIndex = 11;
+            // 
+            // home_usercontrol
+            // 
+            this.home_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.home_usercontrol.Location = new System.Drawing.Point(249, 42);
+            this.home_usercontrol.Name = "home_usercontrol";
+            this.home_usercontrol.Size = new System.Drawing.Size(997, 616);
+            this.home_usercontrol.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 658);
+            this.Controls.Add(this.home_usercontrol);
+            this.Controls.Add(this.transaction_usercontrol);
+            this.Controls.Add(this.product_usercontrol);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -211,6 +248,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_product.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -228,8 +266,9 @@
         private System.Windows.Forms.Button product_btn;
         private System.Windows.Forms.Label exit_button;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private UserControlForms.Home home_usercontrol;
         private UserControlForms.TransactionUserControl transaction_usercontrol;
-        private UserControlForms.ProductUserControl productUserControl1;
-        private UserControlForms.Home home1;
+        private UserControlForms.ProductUserControl product_usercontrol;
     }
 }
