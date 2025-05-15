@@ -15,5 +15,6 @@ namespace Final_Project.BussinessLogic.Interfaces
         List<Product> SearchProducts(string name = null, string category = null,
                                      string unit = null, int? price = null,
                                      int? quantity = null, int? weight = null);
+
     }
 }
