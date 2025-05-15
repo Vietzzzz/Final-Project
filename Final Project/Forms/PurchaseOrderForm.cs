@@ -27,14 +27,5 @@ namespace Final_Project.Forms
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void supplier_label_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

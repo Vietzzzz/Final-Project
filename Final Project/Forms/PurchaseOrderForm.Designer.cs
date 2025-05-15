@@ -39,16 +39,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.save_button = new System.Windows.Forms.Button();
             this.delete_button = new System.Windows.Forms.Panel();
-            this.totalprice_purchase_order = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.add_button = new System.Windows.Forms.Button();
-            this.search_button = new System.Windows.Forms.Button();
-            this.import_product_labe = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.error_message_label = new System.Windows.Forms.Label();
             this.fail_label = new System.Windows.Forms.Label();
             this.success_label = new System.Windows.Forms.Label();
+            this.import_product_labe = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.add_button = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.totalprice_purchase_order = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.delete_button.SuspendLayout();
             this.SuspendLayout();
@@ -152,7 +151,6 @@
             this.delete_button.Controls.Add(this.import_product_labe);
             this.delete_button.Controls.Add(this.button1);
             this.delete_button.Controls.Add(this.add_button);
-            this.delete_button.Controls.Add(this.search_button);
             this.delete_button.Controls.Add(this.textBox1);
             this.delete_button.Controls.Add(this.totalprice_purchase_order);
             this.delete_button.Controls.Add(this.label3);
@@ -164,90 +162,6 @@
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(911, 175);
             this.delete_button.TabIndex = 5;
-            // 
-            // totalprice_purchase_order
-            // 
-            this.totalprice_purchase_order.AutoSize = true;
-            this.totalprice_purchase_order.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.totalprice_purchase_order.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.totalprice_purchase_order.Location = new System.Drawing.Point(762, 61);
-            this.totalprice_purchase_order.Name = "totalprice_purchase_order";
-            this.totalprice_purchase_order.Size = new System.Drawing.Size(75, 28);
-            this.totalprice_purchase_order.TabIndex = 5;
-            this.totalprice_purchase_order.Text = "hahaha";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(39, 41);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(193, 34);
-            this.textBox1.TabIndex = 6;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::Final_Project.Properties.Resources.delete;
-            this.button1.Location = new System.Drawing.Point(391, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 52);
-            this.button1.TabIndex = 9;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // add_button
-            // 
-            this.add_button.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_button.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.add_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
-            this.add_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.add_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.add_button.Image = global::Final_Project.Properties.Resources.plus;
-            this.add_button.Location = new System.Drawing.Point(321, 28);
-            this.add_button.Name = "add_button";
-            this.add_button.Size = new System.Drawing.Size(55, 52);
-            this.add_button.TabIndex = 8;
-            this.add_button.UseVisualStyleBackColor = false;
-            // 
-            // search_button
-            // 
-            this.search_button.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.search_button.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.search_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
-            this.search_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.search_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.search_button.Image = global::Final_Project.Properties.Resources.search;
-            this.search_button.Location = new System.Drawing.Point(250, 28);
-            this.search_button.Name = "search_button";
-            this.search_button.Size = new System.Drawing.Size(55, 52);
-            this.search_button.TabIndex = 7;
-            this.search_button.UseVisualStyleBackColor = false;
-            // 
-            // import_product_labe
-            // 
-            this.import_product_labe.AutoSize = true;
-            this.import_product_labe.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.import_product_labe.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.import_product_labe.Location = new System.Drawing.Point(39, 9);
-            this.import_product_labe.Name = "import_product_labe";
-            this.import_product_labe.Size = new System.Drawing.Size(127, 23);
-            this.import_product_labe.TabIndex = 10;
-            this.import_product_labe.Text = "Import product";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label3.Location = new System.Drawing.Point(541, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 23);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "need to pay the supplier:";
-            this.label3.Click += new System.EventHandler(this.label1_Click);
             // 
             // error_message_label
             // 
@@ -287,6 +201,75 @@
             this.success_label.Text = "Update Successfully!";
             this.success_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // import_product_labe
+            // 
+            this.import_product_labe.AutoSize = true;
+            this.import_product_labe.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.import_product_labe.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.import_product_labe.Location = new System.Drawing.Point(39, 9);
+            this.import_product_labe.Name = "import_product_labe";
+            this.import_product_labe.Size = new System.Drawing.Size(127, 23);
+            this.import_product_labe.TabIndex = 10;
+            this.import_product_labe.Text = "Import product";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::Final_Project.Properties.Resources.delete;
+            this.button1.Location = new System.Drawing.Point(318, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(55, 52);
+            this.button1.TabIndex = 9;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // add_button
+            // 
+            this.add_button.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.add_button.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.add_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.add_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.add_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_button.Image = global::Final_Project.Properties.Resources.plus;
+            this.add_button.Location = new System.Drawing.Point(248, 32);
+            this.add_button.Name = "add_button";
+            this.add_button.Size = new System.Drawing.Size(55, 52);
+            this.add_button.TabIndex = 8;
+            this.add_button.UseVisualStyleBackColor = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(39, 41);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(193, 34);
+            this.textBox1.TabIndex = 6;
+            // 
+            // totalprice_purchase_order
+            // 
+            this.totalprice_purchase_order.AutoSize = true;
+            this.totalprice_purchase_order.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.totalprice_purchase_order.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.totalprice_purchase_order.Location = new System.Drawing.Point(762, 61);
+            this.totalprice_purchase_order.Name = "totalprice_purchase_order";
+            this.totalprice_purchase_order.Size = new System.Drawing.Size(75, 28);
+            this.totalprice_purchase_order.TabIndex = 5;
+            this.totalprice_purchase_order.Text = "hahaha";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label3.Location = new System.Drawing.Point(541, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(200, 23);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "need to pay the supplier:";
+            // 
             // PurchaseOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -319,7 +302,6 @@
         private System.Windows.Forms.Panel delete_button;
         private System.Windows.Forms.Label totalprice_purchase_order;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button search_button;
         private System.Windows.Forms.Button add_button;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label import_product_labe;

@@ -26,7 +26,7 @@ namespace Final_Project.UserControlForms
 
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
-                LoadProductService();
+            
                 // Khởi tạo DataGridView
                 DisplayProduct(_productService.GetAllProducts());
             }
