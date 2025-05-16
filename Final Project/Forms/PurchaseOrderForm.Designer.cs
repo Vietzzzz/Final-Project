@@ -34,14 +34,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.save_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.totalitem_label = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.error_message_label = new System.Windows.Forms.Label();
             this.fail_label = new System.Windows.Forms.Label();
             this.import_product_labe = new System.Windows.Forms.Label();
             this.delete_button = new System.Windows.Forms.Button();
             this.add_button = new System.Windows.Forms.Button();
             this.name_textbox = new System.Windows.Forms.TextBox();
-            this.totalprice_purchase_order = new System.Windows.Forms.Label();
+            this.totalamount_label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.create_date_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.product_datagridview)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -65,18 +69,17 @@
             this.supplier_textbox.Location = new System.Drawing.Point(701, 22);
             this.supplier_textbox.Multiline = true;
             this.supplier_textbox.Name = "supplier_textbox";
-            this.supplier_textbox.Size = new System.Drawing.Size(140, 28);
+            this.supplier_textbox.Size = new System.Drawing.Size(140, 23);
             this.supplier_textbox.TabIndex = 1;
             this.supplier_textbox.TextChanged += new System.EventHandler(this.supplier_textbox_TextChanged);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.Location = new System.Drawing.Point(474, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 28);
+            this.label1.Size = new System.Drawing.Size(113, 23);
             this.label1.TabIndex = 3;
             this.label1.Text = "Supplier:";
             // 
@@ -88,23 +91,28 @@
             this.save_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.save_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_button.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.save_button.Location = new System.Drawing.Point(718, 108);
+            this.save_button.Location = new System.Drawing.Point(270, 96);
             this.save_button.Name = "save_button";
-            this.save_button.Size = new System.Drawing.Size(100, 51);
+            this.save_button.Size = new System.Drawing.Size(89, 51);
             this.save_button.TabIndex = 4;
             this.save_button.Text = "Save";
             this.save_button.UseVisualStyleBackColor = false;
+            this.save_button.Click += new System.EventHandler(this.save_button_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.create_date_label);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.totalitem_label);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.error_message_label);
             this.panel2.Controls.Add(this.fail_label);
             this.panel2.Controls.Add(this.import_product_labe);
             this.panel2.Controls.Add(this.delete_button);
             this.panel2.Controls.Add(this.add_button);
             this.panel2.Controls.Add(this.name_textbox);
-            this.panel2.Controls.Add(this.totalprice_purchase_order);
+            this.panel2.Controls.Add(this.totalamount_label);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.save_button);
             this.panel2.Controls.Add(this.label1);
@@ -114,6 +122,25 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(872, 175);
             this.panel2.TabIndex = 5;
+            // 
+            // totalitem_label
+            // 
+            this.totalitem_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.totalitem_label.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.totalitem_label.Location = new System.Drawing.Point(701, 87);
+            this.totalitem_label.Name = "totalitem_label";
+            this.totalitem_label.Size = new System.Drawing.Size(140, 23);
+            this.totalitem_label.TabIndex = 20;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label2.Location = new System.Drawing.Point(474, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 23);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Total Items:";
             // 
             // error_message_label
             // 
@@ -164,6 +191,7 @@
             this.delete_button.Size = new System.Drawing.Size(55, 52);
             this.delete_button.TabIndex = 9;
             this.delete_button.UseVisualStyleBackColor = false;
+            this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
             // 
             // add_button
             // 
@@ -189,25 +217,43 @@
             this.name_textbox.Size = new System.Drawing.Size(193, 34);
             this.name_textbox.TabIndex = 6;
             // 
-            // totalprice_purchase_order
+            // totalamount_label
             // 
-            this.totalprice_purchase_order.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.totalprice_purchase_order.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.totalprice_purchase_order.Location = new System.Drawing.Point(701, 64);
-            this.totalprice_purchase_order.Name = "totalprice_purchase_order";
-            this.totalprice_purchase_order.Size = new System.Drawing.Size(140, 28);
-            this.totalprice_purchase_order.TabIndex = 5;
+            this.totalamount_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.totalamount_label.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.totalamount_label.Location = new System.Drawing.Point(701, 52);
+            this.totalamount_label.Name = "totalamount_label";
+            this.totalamount_label.Size = new System.Drawing.Size(140, 23);
+            this.totalamount_label.TabIndex = 5;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label3.Location = new System.Drawing.Point(475, 64);
+            this.label3.Location = new System.Drawing.Point(474, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 23);
+            this.label3.Size = new System.Drawing.Size(113, 23);
             this.label3.TabIndex = 2;
-            this.label3.Text = "need to pay the supplier:";
+            this.label3.Text = "Total Amount";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label4.Location = new System.Drawing.Point(474, 116);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 23);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Date:";
+            // 
+            // create_date_label
+            // 
+            this.create_date_label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.create_date_label.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.create_date_label.Location = new System.Drawing.Point(701, 116);
+            this.create_date_label.Name = "create_date_label";
+            this.create_date_label.Size = new System.Drawing.Size(140, 23);
+            this.create_date_label.TabIndex = 22;
             // 
             // PurchaseOrderForm
             // 
@@ -234,7 +280,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button save_button;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label totalprice_purchase_order;
+        private System.Windows.Forms.Label totalamount_label;
         private System.Windows.Forms.TextBox name_textbox;
         private System.Windows.Forms.Button add_button;
         private System.Windows.Forms.Button delete_button;
@@ -242,5 +288,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label error_message_label;
         private System.Windows.Forms.Label fail_label;
+        private System.Windows.Forms.Label totalitem_label;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label create_date_label;
     }
 }

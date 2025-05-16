@@ -35,11 +35,13 @@ namespace Final_Project.BussinessLogic.Services
             int productID = _productRepository.CreateProduct(product);
             return productID;
         }
+        // get all products
         public List<Product> GetAllProducts()
         {
 
             return _productRepository.GetAllProducts();
         }
+        // delete product
         public int DeleteProduct(Product product)
         {
             if (product.ProductId <= 0)
@@ -47,6 +49,7 @@ namespace Final_Project.BussinessLogic.Services
 
             return _productRepository.DeleteProduct(product);
         }
+        // search product
         public List<Product> SearchProducts(string name = null, string category = null,
                                      string unit = null, int? price = null,
                                      int? quantity = null, int? weight = null)
@@ -76,6 +79,16 @@ namespace Final_Project.BussinessLogic.Services
                 quantity,
                 weight
             );
+        }
+        // get product by id
+        public Product GetProductById(int productID)
+        {
+            return _productRepository.GetProductByID(productID);
+        }
+        // search product by name
+        public List<Product> SearchProductByName(string name)
+        {
+            return _productRepository.GetProductsByName(name);
         }
     }
 }

@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Final_Project.Models
 {
-    public class PurchaseOrderDetails
+    public class ImportOrderDetail
     {
         public int DetailId { get; set; }
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
         public int UnitPrice { get; set; }
-
-        // Navigation properties
-        public PurchaseOrders Order { get; set; }
+        public int TotalPrice => Quantity * UnitPrice;
         public Product Product { get; set; }
     }
 }

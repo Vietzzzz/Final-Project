@@ -184,7 +184,7 @@ namespace Final_Project.DataAccess.Repositories
 
             return products;
         }
-
+        // Get Product By ID
         public Product GetProductByID(int id)
         {
             Product product = null;
@@ -221,5 +221,60 @@ namespace Final_Project.DataAccess.Repositories
                 return product;
             }
         }
+        //Get Product By Name
+        public List<Product> GetProductsByName(string name)
+        {
+            List<Product> products = new List<Product>();
+
+            using (var conn = dbContext.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM product WHERE product_name ILIKE @product_name";
+
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@product_name", "%" + name + "%");
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Product product = new Product
+                            {
+                                ProductId = reader.GetInt32(0),
+                                ProductName = reader.GetString(1),
+                                Unit = reader.GetString(2),
+                                Quantity = reader.GetInt32(3),
+                                Price = reader.GetInt32(4),
+                                CreatedDate = reader.GetDateTime(5),
+                                UpdateDate = reader.GetDateTime(6),
+                                Category = reader.GetString(7),
+                                Weight = reader.GetInt32(8)
+                            };
+                            products.Add(product);
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+        // Update Product Stock
+        public void UpdateProductStock(int productId, int quantity)
+        {
+            using (var conn = dbContext.GetConnection())
+            {
+                conn.Open();
+                string query = "UPDATE product SET quantity = @quantity + quantity WHERE product_id = @product_id";
+
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@quantity", quantity);
+                    cmd.Parameters.AddWithValue("@product_id", productId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        // Update Product
     }
 }

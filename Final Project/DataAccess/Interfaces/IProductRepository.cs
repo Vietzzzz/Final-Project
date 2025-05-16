@@ -15,6 +15,10 @@ namespace Final_Project.DataAccess.Interfaces
         List<Product> SearchProducts(string name = null, string category = null,
                                      string unit = null, int? price = null,
                                      int? quantity = null, int? weight = null);
+        Product GetProductByID(int id);
 
+        List<Product> GetProductsByName(string name);
+
+        void UpdateProductStock(int productId, int quantity);
     }
 }

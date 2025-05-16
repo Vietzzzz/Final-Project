@@ -93,14 +93,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinessLogic\Interfaces\IAuthService.cs" />
+    <Compile Include="BussinessLogic\Interfaces\IImportOrderService.cs" />
     <Compile Include="BussinessLogic\Interfaces\IProductService.cs" />
     <Compile Include="BussinessLogic\Services\AuthService.cs" />
+    <Compile Include="BussinessLogic\Services\ImportOrderService.cs" />
     <Compile Include="BussinessLogic\Services\ProductService.cs" />
     <Compile Include="BussinessLogic\SessionManager\SectionManager.cs" />
     <Compile Include="DataAccess\DBContext.cs" />
     <Compile Include="DataAccess\Interfaces\IAdminRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IImportOrderRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IProductRepository.cs" />
     <Compile Include="DataAccess\Repositories\AdminRepository.cs" />
+    <Compile Include="DataAccess\Repositories\ImportOrderRepository.cs" />
     <Compile Include="DataAccess\Repositories\ProductRepository.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -121,8 +125,8 @@
       <DependentUpon>PurchaseOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\PurchaseOrderDetails.cs" />
-    <Compile Include="Models\PurchaseOrders.cs" />
+    <Compile Include="Models\ImportOrderDetail.cs" />
+    <Compile Include="Models\ImportOrder.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

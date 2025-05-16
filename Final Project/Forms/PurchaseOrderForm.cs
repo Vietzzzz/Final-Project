@@ -18,214 +18,233 @@ namespace Final_Project.Forms
 {
     public partial class PurchaseOrderForm : Form
     {
-        private List<Product> OriginalProducts = new List<Product>();
         private IProductService _productService;
+        private IImportOrderService importOrderService;
+        private ImportOrder _importOrder;
+        private BindingSource _bindingSource;
         private Product _product;
-        private SectionManager _sectionManager;
         public PurchaseOrderForm()
         {
             InitializeComponent();
-            fail_label.Hide();
-            error_message_label.Hide();
+
 
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
-                LoadProductService();
+                LoadService();
             }
+
+            PurchaseOrderForm_Load(this, EventArgs.Empty);
         }
 
         private void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        // Display datagridview
-        private void DisplayProduct(List<Product> products)
-        {
-            // Lưu trữ các giá trị quantity và totalPrice hiện tại
-            Dictionary<string, object[]> savedValues = new Dictionary<string, object[]>();
-
-            foreach (DataGridViewRow row in product_datagridview.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    var product = row.DataBoundItem as Product;
-                    if (product != null)
-                    {
-                        // Lưu productId, quantity và totalPrice
-                        savedValues[product.ProductId.ToString()] = new object[] {
-                    row.Cells["Quantity"].Value,
-                    row.Cells["TotalPrice"].Value
-                };
-                    }
-                }
-            }
-            product_datagridview.DataSource = products;
-            // Turn off autogenerate columns
+            // Turn off autocolumn
             product_datagridview.AutoGenerateColumns = false;
 
-            // Delete existing columns
+            // Xóa tất cả cột hiện có
             product_datagridview.Columns.Clear();
 
-            // Create productID column
+            // Add columns to datagridview
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
             {
+                Name = "ProductId",
+                HeaderText = "Product ID",
                 DataPropertyName = "ProductId",
-                HeaderText = "ProductID",
-                Width = 100,
-                ReadOnly = true
+                Width = 100
             });
 
-            // Create productName column
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
             {
+                Name = "ProductName",
+                HeaderText = "Product Name",
                 DataPropertyName = "ProductName",
-                HeaderText = "ProductName",
-                Width = 200,
-                ReadOnly = true
+                Width = 200
             });
 
-            // Create price column
-            product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = "Price",
-                DataPropertyName = "Price",
-                HeaderText = "Price",
-                Width = 100,
-                ReadOnly = true
-            });
-
-            // Create quantity column
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "Quantity",
                 HeaderText = "Quantity",
-                Width = 100,
+                DataPropertyName = "Quantity",
+                Width = 100
             });
 
-            // Create total price column
+            product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Price",
+                HeaderText = "Price",
+                DataPropertyName = "Price",
+                Width = 100
+            });
+
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "TotalPrice",
                 HeaderText = "Total Price",
-                Width = 100,
-                ReadOnly = true
+                DataPropertyName = "TotalPrice",
+                Width = 100
             });
 
-            // Thêm dòng này vào cuối đoạn code hiện tại
-            foreach (DataGridViewRow row in product_datagridview.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    var product = row.DataBoundItem as Product;
-                    if (product != null)
-                    {
-                        string productId = product.ProductId.ToString();
 
-                        if (savedValues.ContainsKey(productId))
-                        {
-                            // Khôi phục giá trị đã lưu cho sản phẩm đã tồn tại
-                            row.Cells["Quantity"].Value = savedValues[productId][0];
-                            row.Cells["TotalPrice"].Value = savedValues[productId][1];
-                        }
-                        else
-                        {
-                            // Đặt giá trị mặc định chỉ cho sản phẩm mới
-                            row.Cells["Quantity"].Value = 1;
-                            row.Cells["TotalPrice"].Value = product.Price * 1;
-                        }
-                    }
-                }
-            }
-            product_datagridview.Columns["Price"].DefaultCellStyle.Format = "#,##0 đ";
-            product_datagridview.Columns["TotalPrice"].DefaultCellStyle.Format = "#,##0 đ";
+            // assign data source
+            _bindingSource.DataSource = _importOrder.ImportOrderDetail;
+            product_datagridview.DataSource = _bindingSource;
 
-            product_datagridview.CellValueChanged += CalculateTotalPrice;
-            totalprice_purchase_order.Text = UpdateTotalAmount().ToString("#,##0 đ");
+            // create date
+            create_date_label.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+            // event when user edit quantity
+            product_datagridview.CellValueChanged += Product_datagridview_CellValueChanged;
 
         }
-        // Calcaulate total price of 1 order detail
-        private void CalculateTotalPrice(object sender, DataGridViewCellEventArgs e)
+
+        private void Product_datagridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && product_datagridview.Columns[e.ColumnIndex].Name == "Quantity")
+            if (e.ColumnIndex == product_datagridview.Columns["Quantity"].Index)
             {
-                var row = product_datagridview.Rows[e.RowIndex];
-                var product = row.DataBoundItem as Product;
-
-                if (product != null)
+                int quantity;
+                if (int.TryParse(product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out quantity) && quantity <= 0)
                 {
-                    // Lấy giá trị quantity do người dùng nhập
-                    int quantity = 1; // Mặc định là 1
-                    if (row.Cells["Quantity"].Value != null)
-                    {
-                        int.TryParse(row.Cells["Quantity"].Value.ToString(), out quantity);
-                        if (quantity <= 0) quantity = 1; // Đảm bảo quantity luôn > 0
-                    }
-
-                    // Chỉ cập nhật Total Price, không ghi đè Quantity
-                    row.Cells["TotalPrice"].Value = product.Price * quantity;
+                    MessageBox.Show("Quantity must be greater than 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
+                    _importOrder.ImportOrderDetail[e.RowIndex].Quantity = 1;
                 }
-                totalprice_purchase_order.Text = UpdateTotalAmount().ToString("#,##0 đ");
+                UpdateOrderSummary();
             }
         }
-        // Total Pric Order
-        private int UpdateTotalAmount()
+        // update total price of import detail
+        private void UpdateOrderSummary()
         {
-            int total = 0;
-
-            // Duyệt qua tất cả các dòng trong DataGridView
-            foreach (DataGridViewRow row in product_datagridview.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    // Lấy giá trị TotalPrice (đã nhân với số lượng)
-                    if (row.Cells["TotalPrice"].Value != null)
-                    {
-                        total += Convert.ToInt32(row.Cells["TotalPrice"].Value);
-                    }
-                }
-            }
-            return total;
+            _importOrder.UpdateTotal();
+            totalitem_label.Text = _importOrder.TotalQuantity.ToString();
+            totalamount_label.Text = _importOrder.TotalPrice.ToString("N0") + " đ";
         }
-        // Add new purchase order
+
+        // add button to add product
         private void add_button_Click(object sender, EventArgs e)
         {
-            List<Product> currentProducts = new List<Product>();
             string name = name_textbox.Text;
-            
+
             if (string.IsNullOrEmpty(name))
             {
-                fail_label.Show();
-                error_message_label.Text = "Please enter product name";
-                error_message_label.Show();
+                MessageBox.Show("Please enter product name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (OriginalProducts.Count == 0)
+            // List product search by name
+            List<Product> products = _productService.SearchProductByName(name);
+
+            if (products.Count == 0)
             {
-                OriginalProducts = _productService.SearchProducts(name, null, null, null, null, null);
+                MessageBox.Show("Product not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(products.Count > 0)
+            {
+                AddProductToOrder(products[0]);s
+            }
+
+            name_textbox.Clear();
+            name_textbox.Focus();
+        }
+
+        private void AddProductToOrder(Product product)
+        {
+            // Kiểm tra xem sản phẩm đã có trong đơn chưa
+            ImportOrderDetail existingDetail = _importOrder.ImportOrderDetail.Find(d => d.ProductId == product.ProductId);
+
+            if (existingDetail != null)
+            {
+                // Nếu đã có, tăng số lượng
+                existingDetail.Quantity += 1;
             }
             else
             {
-                currentProducts = _productService.SearchProducts(name, null, null, null, null, null);
-                OriginalProducts.AddRange(currentProducts.Where(cur => !OriginalProducts.Any(ori => ori.ProductId == cur.ProductId)));
-            }
-            DisplayProduct(OriginalProducts);
-            fail_label.Hide();
-            error_message_label.Hide();
+                // Nếu chưa có, thêm mới
+                ImportOrderDetail detail = new ImportOrderDetail
+                {
+                    ProductId = product.ProductId,
+                    Product = product,
+                    Quantity = 1,
+                    UnitPrice = product.Price
+                };
 
+                _importOrder.ImportOrderDetail.Add(detail);
+
+            }
+
+            // Cập nhật dữ liệu
+            _bindingSource.ResetBindings(false);
+            UpdateOrderSummary();
+        }
+
+        private void delete_button_Click(object sender, EventArgs e)
+        {
+            if (product_datagridview.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please choose a product", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int rowIndex = product_datagridview.SelectedRows[0].Index;
+            _importOrder.ImportOrderDetail.RemoveAt(rowIndex);
+            _bindingSource.ResetBindings(false);
+            UpdateOrderSummary();
+        }
+
+        // save button
+        private void save_button_Click(object sender, EventArgs e)
+        {
+            // check if supplier name is empty
+            if (string.IsNullOrEmpty(supplier_textbox.Text))
+            {
+                MessageBox.Show("Please enter supplier name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            // check if any product in order
+            if (_importOrder.ImportOrderDetail.Count == 0)
+            {
+                MessageBox.Show("Please add product to order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Update infor
+                _importOrder.CreatedAt = DateTime.Parse(create_date_label.Text);
+                _importOrder.AdminId = SectionManager.Instance.CurrentAdmin.AdminId;
+                _importOrder.SupplierName = supplier_textbox.Text.Trim();
+
+                int orderId = importOrderService.CreateImportOrder(_importOrder);
+
+                if (orderId > 0)
+                {
+                    MessageBox.Show("Import Order created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void supplier_textbox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void LoadProductService()
+        private void LoadService()
         {
             var dbContext = new DBContext();
             var productRepository = new ProductRepository(dbContext);
             _productService = new ProductService(productRepository);
-            _product = new Product(); // Tạo mới đối tượng product
+            _bindingSource = new BindingSource();
+            _product = new Product();
+            var importOrderRepository = new ImportOrderRepository(dbContext);
+            importOrderService = new ImportOrderService(importOrderRepository, _product);
+            _importOrder = new ImportOrder();
+            _importOrder.ImportOrderDetail = new List<ImportOrderDetail>(); // Thêm dòng này
         }
     }
 }
