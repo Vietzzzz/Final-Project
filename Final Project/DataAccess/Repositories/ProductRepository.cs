@@ -184,5 +184,42 @@ namespace Final_Project.DataAccess.Repositories
 
             return products;
         }
+
+        public Product GetProductByID(int id)
+        {
+            Product product = null;
+
+            using (var conn = dbContext.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM product WHERE product_id = @product_id";
+
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@product_id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            product = new Product
+                            {
+                                ProductId = reader.GetInt32(0),
+                                ProductName = reader.GetString(1),
+                                Unit = reader.GetString(2),
+                                Quantity = reader.GetInt32(3),
+                                Price = reader.GetInt32(4),
+                                CreatedDate = reader.GetDateTime(5),
+                                UpdateDate = reader.GetDateTime(6),
+                                Category = reader.GetString(7),
+                                Weight = reader.GetInt32(8)
+                            };
+                        }
+                        reader.Close();
+                    }
+                }
+                return product;
+            }
+        }
     }
 }
