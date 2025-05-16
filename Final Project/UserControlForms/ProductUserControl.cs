@@ -44,6 +44,8 @@ namespace Final_Project.UserControlForms
             // Fill GridView Space
             product_data_gridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            product_data_gridview.Columns["CreatedDate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
             // Định dạng cột Price thành 0,000 đ
             product_data_gridview.Columns["Price"].DefaultCellStyle.Format = "#,##0 đ";
         }
@@ -117,6 +119,8 @@ namespace Final_Project.UserControlForms
         {
             PurchaseOrderForm purchaseOrderForm = new PurchaseOrderForm();
             purchaseOrderForm.ShowDialog();
+
+            DisplayProduct(_productService.GetAllProducts());
         }
     }
 }

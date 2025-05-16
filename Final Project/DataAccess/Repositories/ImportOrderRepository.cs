@@ -31,7 +31,7 @@ namespace Final_Project.DataAccess.Repositories
                 {
                     // add new order
                     string query = "INSERT INTO purchase_order (adminid, created_at, total_price, total_quantity, supplier) " +
-                                   "VALUES (@adminId, @createdAt, @totalPrice, @totalQuantity, @supplier) RETURNING order_id";
+                                   "VALUES (@adminId, @createdAt, @totalPrice, @totalQuantity, @supplier) returning order_id";
                     using (var cmd = new NpgsqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@adminId", order.AdminId);
@@ -40,10 +40,7 @@ namespace Final_Project.DataAccess.Repositories
                         cmd.Parameters.AddWithValue("@totalQuantity", order.TotalQuantity);
                         cmd.Parameters.AddWithValue("@supplier", order.SupplierName);
 
-                        // Lấy giá trị order_id được tạo tự động
                         orderId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                        cmd.ExecuteNonQuery();
                     }
 
                     // Add detail order

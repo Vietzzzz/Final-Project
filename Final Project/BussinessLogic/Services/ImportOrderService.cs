@@ -36,6 +36,7 @@ namespace Final_Project.BussinessLogic.Services
                 throw new Exception("Supplier name is required");
             }
 
+
             order.AdminId = SectionManager.Instance.CurrentAdmin.AdminId;
             order.CreatedAt = DateTime.Now;
 

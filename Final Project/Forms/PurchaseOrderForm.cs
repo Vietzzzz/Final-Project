@@ -55,7 +55,8 @@ namespace Final_Project.Forms
                 Name = "ProductId",
                 HeaderText = "Product ID",
                 DataPropertyName = "ProductId",
-                Width = 100
+                Width = 100,
+                ReadOnly = true,
             });
 
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
@@ -63,7 +64,8 @@ namespace Final_Project.Forms
                 Name = "ProductName",
                 HeaderText = "Product Name",
                 DataPropertyName = "ProductName",
-                Width = 200
+                Width = 200,
+                ReadOnly = true,
             });
 
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
@@ -71,7 +73,7 @@ namespace Final_Project.Forms
                 Name = "Quantity",
                 HeaderText = "Quantity",
                 DataPropertyName = "Quantity",
-                Width = 100
+                Width = 100,
             });
 
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
@@ -79,7 +81,8 @@ namespace Final_Project.Forms
                 Name = "Price",
                 HeaderText = "Price",
                 DataPropertyName = "UnitPrice",
-                Width = 100
+                Width = 100,
+                ReadOnly = true,
             });
 
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
@@ -87,7 +90,8 @@ namespace Final_Project.Forms
                 Name = "TotalPrice",
                 HeaderText = "Total Cost",
                 DataPropertyName = "TotalPrice",
-                Width = 100
+                Width = 100,
+                ReadOnly = true,
             });
 
             // assign data source
@@ -126,9 +130,11 @@ namespace Final_Project.Forms
             if (e.ColumnIndex == product_datagridview.Columns["Quantity"].Index)
             {
                 int quantity;
-                if (int.TryParse(product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out quantity) && quantity <= 0)
+                if (int.TryParse(product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out quantity) && quantity <= 0
+                    || quantity > 9999999)
                 {
-                    MessageBox.Show("Quantity must be greater than 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    error_message_label.Text = "Invalid Quantity";
+                    error_message_label.Visible = true;
                     product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
                     _importOrder.ImportOrderDetail[e.RowIndex].Quantity = 1;
                 }
@@ -165,7 +171,7 @@ namespace Final_Project.Forms
                 {
                     error_message_label.Text = "Product not found";
                     error_message_label.Visible = true;
-                    name_textbox.SelectAll(); // Chọn toàn bộ text để người dùng có thể nhập lại
+                    name_textbox.Clear(); // Chọn toàn bộ text để người dùng có thể nhập lại
                     name_textbox.Focus();
                     return;
                 }
@@ -256,6 +262,13 @@ namespace Final_Project.Forms
                 return;
             }
 
+            // Show confirmation dialog
+            DialogResult result = MessageBox.Show("Are you sure you want to save this order?", "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                return; // Exit if user clicks No
+            }
+
             try
             {
                 // Update infor
@@ -268,7 +281,7 @@ namespace Final_Project.Forms
                 if (orderId > 0)
                 {
                     MessageBox.Show("Import Order created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    this.Close();
                 }
             }
             catch (Exception ex) 
@@ -276,11 +289,6 @@ namespace Final_Project.Forms
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void supplier_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoadService()
         {
             var dbContext = new DBContext();
@@ -292,26 +300,6 @@ namespace Final_Project.Forms
             importOrderService = new ImportOrderService(importOrderRepository, _product);
             _importOrder = new ImportOrder();
             _importOrder.ImportOrderDetail = new List<ImportOrderDetail>(); // Thêm dòng này
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void totalamount_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
