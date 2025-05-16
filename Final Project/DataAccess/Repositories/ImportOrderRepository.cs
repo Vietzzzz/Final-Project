@@ -30,33 +30,34 @@ namespace Final_Project.DataAccess.Repositories
                 try
                 {
                     // add new order
-                    string query = "INSERT INTO purchase_order (order_id, adminid, created_at, total_price, total_quantity, supplier) " +
-                                   "VALUES (@orderId, @adminId, @createdAt, @totalPrice, totalQuantity, @supplier)";
+                    string query = "INSERT INTO purchase_order (adminid, created_at, total_price, total_quantity, supplier) " +
+                                   "VALUES (@adminId, @createdAt, @totalPrice, @totalQuantity, @supplier) RETURNING order_id";
                     using (var cmd = new NpgsqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@orderId", order.OrderId);
                         cmd.Parameters.AddWithValue("@adminId", order.AdminId);
                         cmd.Parameters.AddWithValue("@createdAt", order.CreatedAt);
                         cmd.Parameters.AddWithValue("@totalPrice", order.TotalPrice);
                         cmd.Parameters.AddWithValue("@totalQuantity", order.TotalQuantity);
                         cmd.Parameters.AddWithValue("@supplier", order.SupplierName);
 
+                        // Lấy giá trị order_id được tạo tự động
+                        orderId = Convert.ToInt32(cmd.ExecuteScalar());
+
                         cmd.ExecuteNonQuery();
                     }
-                    orderId = order.OrderId;
 
                     // Add detail order
                     foreach (var detail in order.ImportOrderDetail)
                     {
-                        string detailQuery = "INSERT INTO purchase_order_detail (detail_id, order_id, product_id, quantity, unit_price) " +
-                                             "VALUES (@detailId, @orderId, @productId, @quantity, @unitPrice)";
+                        string detailQuery = "INSERT INTO purchase_order_details (order_id, product_id, quantity, unit_price, product_name) " +
+                                             "VALUES (@orderId, @productId, @quantity, @unitPrice, @productName)";
                         using (var cmd = new NpgsqlCommand(detailQuery, conn))
                         {
-                            cmd.Parameters.AddWithValue("@detailId", detail.DetailId);
-                            cmd.Parameters.AddWithValue("@orderId", detail.OrderId);
+                            cmd.Parameters.AddWithValue("@orderId", orderId); // Sử dụng orderId đã lấy được
                             cmd.Parameters.AddWithValue("@productId", detail.ProductId);
                             cmd.Parameters.AddWithValue("@quantity", detail.Quantity);
                             cmd.Parameters.AddWithValue("@unitPrice", detail.UnitPrice);
+                            cmd.Parameters.AddWithValue("@productName", detail.ProductName);
 
                             cmd.ExecuteNonQuery();
                         }
@@ -111,7 +112,7 @@ namespace Final_Project.DataAccess.Repositories
                         if (order != null)
                         {
                             // Get order details
-                            string detailOrderQuery = "SELECT d.detail_id, d.order_id, d.product_id, d.quantity, d.unit_price, p.product_name" +
+                            string detailOrderQuery = "SELECT d.detail_id, d.order_id, d.product_id, d.quantity, d.unit_price, d.product_name" +
                                                       "FROM purchase_order_detail d" +
                                                       "JOIN product ON p on d.product_id = p.product_id" +
                                                       "WHERE order_id = @orderId";
@@ -130,6 +131,7 @@ namespace Final_Project.DataAccess.Repositories
                                             ProductId = Convert.ToInt32(detailReader["product_id"]),
                                             Quantity = Convert.ToInt32(detailReader["quantity"]),
                                             UnitPrice = Convert.ToInt32(detailReader["unit_price"]),
+                                            ProductName = detailReader["d.product_name"].ToString(),
 
                                             Product = new Product
                                             {

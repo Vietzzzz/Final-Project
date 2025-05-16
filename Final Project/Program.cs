@@ -22,7 +22,7 @@ namespace Final_Project
             var dbContext = new DBContext();
             var adminRepository = new AdminRepository(dbContext);
             var sectionManager = new SectionManager();
-            var authService = new AuthService(adminRepository, sectionManager);
+            var authService = new AuthService(adminRepository, SectionManager.Instance);
 
 
             Application.EnableVisualStyles();

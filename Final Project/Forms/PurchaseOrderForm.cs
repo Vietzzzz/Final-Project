@@ -38,11 +38,16 @@ namespace Final_Project.Forms
 
         private void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
+            error_message_label.Visible = false;
+            
             // Turn off autocolumn
             product_datagridview.AutoGenerateColumns = false;
 
             // Xóa tất cả cột hiện có
             product_datagridview.Columns.Clear();
+
+            // select full row
+            product_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Add columns to datagridview
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
@@ -73,29 +78,47 @@ namespace Final_Project.Forms
             {
                 Name = "Price",
                 HeaderText = "Price",
-                DataPropertyName = "Price",
+                DataPropertyName = "UnitPrice",
                 Width = 100
             });
 
             product_datagridview.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = "TotalPrice",
-                HeaderText = "Total Price",
+                HeaderText = "Total Cost",
                 DataPropertyName = "TotalPrice",
                 Width = 100
             });
-
 
             // assign data source
             _bindingSource.DataSource = _importOrder.ImportOrderDetail;
             product_datagridview.DataSource = _bindingSource;
 
-            // create date
-            create_date_label.Text = DateTime.Now.ToString("dd/MM/yyyy");
-
             // event when user edit quantity
             product_datagridview.CellValueChanged += Product_datagridview_CellValueChanged;
 
+            // Định dạng cột Price thành 0,000 đ
+            product_datagridview.Columns["Price"].DefaultCellStyle.Format = "#,##0 đ";
+            product_datagridview.Columns["TotalPrice"].DefaultCellStyle.Format = "#,##0 đ";
+
+            create_date_label.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+            name_textbox.KeyDown += Name_textbox_KeyDown;
+        }
+
+        // Handle Enter key press in name_textbox
+        private void Name_textbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Ngăn âm thanh beep
+
+                // Chỉ gọi sự kiện click nếu TextBox không trống
+                if (!string.IsNullOrWhiteSpace(name_textbox.Text))
+                {
+                    add_button_Click(sender, e);
+                }
+            }
         }
 
         private void Product_datagridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -123,30 +146,43 @@ namespace Final_Project.Forms
         // add button to add product
         private void add_button_Click(object sender, EventArgs e)
         {
-            string name = name_textbox.Text;
+            string name = name_textbox.Text.Trim();
 
             if (string.IsNullOrEmpty(name))
             {
-                MessageBox.Show("Please enter product name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                error_message_label.Text = "Please enter product name";
+                error_message_label.Visible = true;
+                name_textbox.Focus();
                 return;
             }
 
-            // List product search by name
-            List<Product> products = _productService.SearchProductByName(name);
-
-            if (products.Count == 0)
+            try
             {
-                MessageBox.Show("Product not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                // List product search by name
+                List<Product> products = _productService.SearchProductByName(name);
 
-            if(products.Count > 0)
+                if (products.Count == 0)
+                {
+                    error_message_label.Text = "Product not found";
+                    error_message_label.Visible = true;
+                    name_textbox.SelectAll(); // Chọn toàn bộ text để người dùng có thể nhập lại
+                    name_textbox.Focus();
+                    return;
+                }
+
+                if (products.Count > 0)
+                {
+                    AddProductToOrder(products[0]);
+                    error_message_label.Visible = false;
+                }
+
+                name_textbox.Clear();
+                name_textbox.Focus();
+            }
+            catch (Exception ex)
             {
-                AddProductToOrder(products[0]);s
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            name_textbox.Clear();
-            name_textbox.Focus();
         }
 
         private void AddProductToOrder(Product product)
@@ -167,11 +203,11 @@ namespace Final_Project.Forms
                     ProductId = product.ProductId,
                     Product = product,
                     Quantity = 1,
+                    ProductName = product.ProductName,
                     UnitPrice = product.Price
                 };
 
                 _importOrder.ImportOrderDetail.Add(detail);
-
             }
 
             // Cập nhật dữ liệu
@@ -183,11 +219,13 @@ namespace Final_Project.Forms
         {
             if (product_datagridview.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please choose a product", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                error_message_label.Text = "Please select a product to delete";
+                error_message_label.Visible = true;
                 return;
             }
 
             int rowIndex = product_datagridview.SelectedRows[0].Index;
+
             _importOrder.ImportOrderDetail.RemoveAt(rowIndex);
             _bindingSource.ResetBindings(false);
             UpdateOrderSummary();
@@ -199,20 +237,29 @@ namespace Final_Project.Forms
             // check if supplier name is empty
             if (string.IsNullOrEmpty(supplier_textbox.Text))
             {
-                MessageBox.Show("Please enter supplier name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                error_message_label.Text = "Please enter supplier name";
+                error_message_label.Visible = true;
                 return;
             }
             // check if any product in order
             if (_importOrder.ImportOrderDetail.Count == 0)
             {
-                MessageBox.Show("Please add product to order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                error_message_label.Text = "Please add product to order";
+                error_message_label.Visible = true;
+                return;
+            }
+
+            // Kiểm tra CurrentAdmin
+            if (SectionManager.Instance?.CurrentAdmin == null)
+            {
+                MessageBox.Show("You need to be logged in to save order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
                 // Update infor
-                _importOrder.CreatedAt = DateTime.Parse(create_date_label.Text);
+                _importOrder.CreatedAt = DateTime.Now;
                 _importOrder.AdminId = SectionManager.Instance.CurrentAdmin.AdminId;
                 _importOrder.SupplierName = supplier_textbox.Text.Trim();
 
@@ -226,7 +273,7 @@ namespace Final_Project.Forms
             }
             catch (Exception ex) 
             { 
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void supplier_textbox_TextChanged(object sender, EventArgs e)
@@ -245,6 +292,26 @@ namespace Final_Project.Forms
             importOrderService = new ImportOrderService(importOrderRepository, _product);
             _importOrder = new ImportOrder();
             _importOrder.ImportOrderDetail = new List<ImportOrderDetail>(); // Thêm dòng này
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void totalamount_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -26,7 +26,8 @@ namespace Final_Project.BussinessLogic.Services
             var admin = _adminRepository.ValidateCredential(username, password);
             if (admin != null)
             {
-                _sSectionManager.CurrentAdmin = admin;
+                // Gán trực tiếp vào instance singleton
+                SectionManager.Instance.CurrentAdmin = admin;
                 return true;
             }
             return false;
@@ -34,7 +35,7 @@ namespace Final_Project.BussinessLogic.Services
 
         public Admin GetCurrentAdmin()
         {
-            return _sSectionManager.CurrentAdmin;
+            return SectionManager.Instance.CurrentAdmin;
         }
     }
 }

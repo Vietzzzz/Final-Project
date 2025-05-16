@@ -24,12 +24,12 @@ namespace Final_Project.Models
         public void UpdateTotal()
         {
             TotalQuantity = 0;
-            TotalQuantity = 0;
+            TotalPrice = 0;
 
             foreach (var detail in ImportOrderDetail)
             {
                 TotalQuantity += detail.Quantity;
-                TotalQuantity += detail.UnitPrice;
+                TotalPrice += detail.UnitPrice * detail.Quantity;
             }
         }
     }
