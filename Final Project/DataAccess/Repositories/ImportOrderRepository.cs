@@ -58,14 +58,6 @@ namespace Final_Project.DataAccess.Repositories
 
                             cmd.ExecuteNonQuery();
                         }
-                        // Update stock
-                        string updateQuery = "update product set quantity = quantity + @quantity where product_id = @productId";
-                        using (var cmd = new NpgsqlCommand(updateQuery, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@quantity", detail.Quantity);
-                            cmd.Parameters.AddWithValue("@productId", detail.ProductId);
-                            cmd.ExecuteNonQuery();
-                        }
                     }
                     transaction.Commit();
                 }
@@ -133,7 +125,7 @@ namespace Final_Project.DataAccess.Repositories
                                             Product = new Product
                                             {
                                                 ProductId = Convert.ToInt32(detailReader["product_id"]),
-                                                ProductName = reader["product_name"].ToString(),
+                                                ProductName = detailReader["product_name"].ToString(),
                                                 Price = Convert.ToInt32(detailReader["price"])
                                             }
                                         };
