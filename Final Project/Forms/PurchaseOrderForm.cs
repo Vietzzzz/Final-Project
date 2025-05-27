@@ -23,6 +23,7 @@ namespace Final_Project.Forms
         private ImportOrder _importOrder;
         private BindingSource _bindingSource;
         private Product _product;
+        private IInventoryLogService inventoryLogService;
         public PurchaseOrderForm()
         {
             InitializeComponent();
@@ -281,6 +282,7 @@ namespace Final_Project.Forms
                 if (orderId > 0)
                 {
                     MessageBox.Show("Import Order created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    inventoryLogService.ProcessInventoryUpdate(orderId);
                     this.Close();
                 }
             }
@@ -299,7 +301,11 @@ namespace Final_Project.Forms
             var importOrderRepository = new ImportOrderRepository(dbContext);
             importOrderService = new ImportOrderService(importOrderRepository, _product);
             _importOrder = new ImportOrder();
-            _importOrder.ImportOrderDetail = new List<ImportOrderDetail>(); // Thêm dòng này
+            _importOrder.ImportOrderDetail = new List<ImportOrderDetail>();
+
+            // Thêm dòng này để khởi tạo inventory service
+            var inventoryLogRepository = new InventoryLogRepository(dbContext);
+            inventoryLogService = new InventoryLogService(inventoryLogRepository);
         }
     }
 }

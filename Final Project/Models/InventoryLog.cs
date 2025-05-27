@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Final_Project.Models
 {
-    internal class InventoryLog
+    public class InventoryLog
     {
         public int LogId { get; set; }
         public int ProductId { get; set; }

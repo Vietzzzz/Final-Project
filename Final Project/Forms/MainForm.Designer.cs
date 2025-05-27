@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.company_name = new System.Windows.Forms.Label();
             this.panel_txn = new System.Windows.Forms.Panel();
@@ -40,7 +39,6 @@
             this.product_btn = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.product_usercontrol = new Final_Project.UserControlForms.ProductUserControl();
             this.transaction_usercontrol = new Final_Project.UserControlForms.TransactionUserControl();
             this.home_usercontrol = new Final_Project.UserControlForms.Home();
@@ -50,7 +48,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_product.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -72,11 +69,11 @@
             this.company_name.AutoSize = true;
             this.company_name.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.company_name.ForeColor = System.Drawing.Color.White;
-            this.company_name.Location = new System.Drawing.Point(44, 190);
+            this.company_name.Location = new System.Drawing.Point(70, 194);
             this.company_name.Name = "company_name";
-            this.company_name.Size = new System.Drawing.Size(165, 54);
+            this.company_name.Size = new System.Drawing.Size(111, 54);
             this.company_name.TabIndex = 0;
-            this.company_name.Text = "Droppii";
+            this.company_name.Text = "DHV";
             // 
             // panel_txn
             // 
@@ -199,10 +196,6 @@
             this.panel2.Size = new System.Drawing.Size(985, 42);
             this.panel2.TabIndex = 9;
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // product_usercontrol
             // 
             this.product_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -249,7 +242,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_product.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -267,7 +259,6 @@
         private System.Windows.Forms.Button product_btn;
         private System.Windows.Forms.Label exit_button;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private UserControlForms.Home home_usercontrol;
         private UserControlForms.TransactionUserControl transaction_usercontrol;
         private UserControlForms.ProductUserControl product_usercontrol;

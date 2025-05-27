@@ -95,17 +95,21 @@
   <ItemGroup>
     <Compile Include="BussinessLogic\Interfaces\IAuthService.cs" />
     <Compile Include="BussinessLogic\Interfaces\IImportOrderService.cs" />
+    <Compile Include="BussinessLogic\Interfaces\IInventoryLogService.cs" />
     <Compile Include="BussinessLogic\Interfaces\IProductService.cs" />
     <Compile Include="BussinessLogic\Services\AuthService.cs" />
     <Compile Include="BussinessLogic\Services\ImportOrderService.cs" />
+    <Compile Include="BussinessLogic\Services\InventoryLogService.cs" />
     <Compile Include="BussinessLogic\Services\ProductService.cs" />
     <Compile Include="BussinessLogic\SessionManager\SectionManager.cs" />
     <Compile Include="DataAccess\DBContext.cs" />
     <Compile Include="DataAccess\Interfaces\IAdminRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IImportOrderRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IInventoryLogRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IProductRepository.cs" />
     <Compile Include="DataAccess\Repositories\AdminRepository.cs" />
     <Compile Include="DataAccess\Repositories\ImportOrderRepository.cs" />
+    <Compile Include="DataAccess\Repositories\InventoryLogRepository.cs" />
     <Compile Include="DataAccess\Repositories\ProductRepository.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>

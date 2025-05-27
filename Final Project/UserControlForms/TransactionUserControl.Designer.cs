@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txn_datagridview = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txn_datagridview)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // txn_datagridview
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 57);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(945, 259);
-            this.dataGridView1.TabIndex = 0;
+            this.txn_datagridview.AllowUserToOrderColumns = true;
+            this.txn_datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.txn_datagridview.Location = new System.Drawing.Point(19, 57);
+            this.txn_datagridview.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.txn_datagridview.Name = "txn_datagridview";
+            this.txn_datagridview.RowHeadersWidth = 51;
+            this.txn_datagridview.RowTemplate.Height = 24;
+            this.txn_datagridview.Size = new System.Drawing.Size(945, 475);
+            this.txn_datagridview.TabIndex = 0;
             // 
             // label1
             // 
@@ -61,10 +61,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txn_datagridview);
             this.Name = "TransactionUserControl";
             this.Size = new System.Drawing.Size(995, 610);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txn_datagridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -72,7 +72,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView txn_datagridview;
         private System.Windows.Forms.Label label1;
     }
 }

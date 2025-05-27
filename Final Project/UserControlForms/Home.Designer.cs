@@ -31,25 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.main_panel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.feature3_label = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.feature2_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.feature1_label = new System.Windows.Forms.Label();
             this.why_choose_label = new System.Windows.Forms.Label();
             this.description_content = new System.Windows.Forms.TextBox();
             this.main_function_textbox = new System.Windows.Forms.Label();
             this.description_home = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.main_panel.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +80,16 @@
             this.panel3.Size = new System.Drawing.Size(226, 150);
             this.panel3.TabIndex = 6;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Final_Project.Properties.Resources.history;
+            this.pictureBox3.Location = new System.Drawing.Point(57, 41);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(90, 90);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
             // feature3_label
             // 
             this.feature3_label.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -105,6 +115,16 @@
             this.panel2.Size = new System.Drawing.Size(226, 150);
             this.panel2.TabIndex = 5;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Final_Project.Properties.Resources.high_five;
+            this.pictureBox1.Location = new System.Drawing.Point(61, 41);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(90, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // feature2_label
             // 
             this.feature2_label.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -128,6 +148,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(226, 150);
             this.panel1.TabIndex = 4;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Final_Project.Properties.Resources.precision;
+            this.pictureBox2.Location = new System.Drawing.Point(60, 41);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(90, 90);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
             // 
             // feature1_label
             // 
@@ -196,40 +226,10 @@
             this.label1.Location = new System.Drawing.Point(24, 9);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(423, 59);
+            this.label1.Size = new System.Drawing.Size(376, 59);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Welcome To Droppi";
+            this.label1.Text = "Welcome To DHV";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Final_Project.Properties.Resources.history;
-            this.pictureBox3.Location = new System.Drawing.Point(57, 41);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(90, 90);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Final_Project.Properties.Resources.high_five;
-            this.pictureBox1.Location = new System.Drawing.Point(61, 41);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(90, 90);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Final_Project.Properties.Resources.precision;
-            this.pictureBox2.Location = new System.Drawing.Point(60, 41);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(90, 90);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
             // 
             // Home
             // 
@@ -243,12 +243,12 @@
             this.main_panel.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

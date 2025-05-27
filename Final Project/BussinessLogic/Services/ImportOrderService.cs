@@ -50,29 +50,7 @@ namespace Final_Project.BussinessLogic.Services
             order.UpdateTotal();
 
             // Tạo order trước
-            int orderId = _importOrderRepository.CreateImportOrder(order);
-
-            if (orderId > 0)
-            {
-                // Sau khi tạo order thành công, update stock cho từng sản phẩm
-                foreach (var detail in order.ImportOrderDetail)
-                {
-                    try
-                    {
-                        // Update stock với thông tin đầy đủ để trigger ghi log
-                        _productRepository.UpdateProductStock(
-                            productId: detail.ProductId,
-                            quantity: detail.Quantity
-                        );
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception($"Error updating stock for product {detail.ProductName}: {ex.Message}");
-                    }
-                }
-            }
-
-            return orderId;
+            return _importOrderRepository.CreateImportOrder(order);
         }
 
         // Get import order by id
