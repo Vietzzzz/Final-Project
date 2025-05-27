@@ -110,8 +110,8 @@ namespace Final_Project.DataAccess.Repositories
                         {
                             // Get order details
                             string detailOrderQuery = "SELECT d.detail_id, d.order_id, d.product_id, d.quantity, d.unit_price, d.product_name" +
-                                                      "FROM purchase_order_detail d" +
-                                                      "JOIN product ON p on d.product_id = p.product_id" +
+                                                      "FROM purchase_order_details d" +
+                                                      "JOIN product p on d.product_id = p.product_id" +
                                                       "WHERE order_id = @orderId";
 
                             using (var detailCmd = new NpgsqlCommand(detailOrderQuery, conn))

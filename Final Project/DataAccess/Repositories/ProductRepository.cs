@@ -60,15 +60,15 @@ namespace Final_Project.DataAccess.Repositories
                         {
                             Product product = new Product
                             {
-                                ProductId = reader.GetInt32(0),
-                                ProductName = reader.GetString(1),
-                                Unit = reader.GetString(2),
-                                Quantity = reader.GetInt32(3),
-                                Price = reader.GetInt32(4),
-                                CreatedDate = reader.GetDateTime(5),
-                                UpdateDate = reader.GetDateTime(6),
-                                Category = reader.GetString(7),
-                                Weight = reader.GetInt32(8)
+                                ProductId = reader.GetInt32(reader.GetOrdinal("product_id")),
+                                ProductName = reader.GetString(reader.GetOrdinal("product_name")),
+                                Quantity = reader.GetInt32(reader.GetOrdinal("quantity")),
+                                Price = reader.GetInt32(reader.GetOrdinal("price")),
+                                CreatedDate = reader.IsDBNull(reader.GetOrdinal("created_date")) ? DateTime.Now : reader.GetDateTime(reader.GetOrdinal("created_date")),
+                                UpdateDate = reader.IsDBNull(reader.GetOrdinal("update_date")) ? DateTime.Now : reader.GetDateTime(reader.GetOrdinal("update_date")),
+                                Category = reader.GetString(reader.GetOrdinal("category")),
+                                Unit = reader.GetString(reader.GetOrdinal("unit")),
+                                Weight = reader.GetInt32(reader.GetOrdinal("weight"))
                             };
                             products.Add(product); // Thêm sản phẩm vào danh sách
                         }
@@ -115,14 +115,14 @@ namespace Final_Project.DataAccess.Repositories
 
             if (!string.IsNullOrEmpty(category))
             {
-                queryBuilder.Append(" AND product_name ILIKE @productName");
-                parameters.Add(new NpgsqlParameter("@productName", "%" + category + "%"));
+                queryBuilder.Append(" AND category ILIKE @category");
+                parameters.Add(new NpgsqlParameter("@category", "%" + category + "%"));
             }
 
             if (!string.IsNullOrEmpty(unit))
             {
-                queryBuilder.Append(" AND product_name ILIKE @productName");
-                parameters.Add(new NpgsqlParameter("@productName", "%" + unit + "%"));
+                queryBuilder.Append(" AND unit ILIKE @unit");
+                parameters.Add(new NpgsqlParameter("@unit", unit));
             }
 
             // Thêm điều kiện tìm kiếm theo giá
@@ -166,12 +166,12 @@ namespace Final_Project.DataAccess.Repositories
                             {
                                 ProductId = reader.GetInt32(0),
                                 ProductName = reader.GetString(1),
-                                Unit = reader.GetString(2),
-                                Quantity = reader.GetInt32(3),
-                                Price = reader.GetInt32(4),
-                                CreatedDate = reader.GetDateTime(5),
-                                UpdateDate = reader.GetDateTime(6),
-                                Category = reader.GetString(7),
+                                Quantity = reader.GetInt32(2),
+                                Price = reader.GetInt32(3),
+                                CreatedDate = reader.GetDateTime(4),
+                                UpdateDate = reader.GetDateTime(5),
+                                Category = reader.GetString(6),
+                                Unit = reader.GetString(7),
                                 Weight = reader.GetInt32(8)
                                 // Thêm các thuộc tính khác tùy thuộc vào cấu trúc bảng của bạn
                             };
@@ -242,14 +242,14 @@ namespace Final_Project.DataAccess.Repositories
                             Product product = new Product
                             {
                                 ProductId = reader.GetInt32(0),
-                                ProductName = reader.GetString(1),
-                                Unit = reader.GetString(2),
-                                Quantity = reader.GetInt32(3),
-                                Price = reader.GetInt32(4),
-                                CreatedDate = reader.GetDateTime(5),
-                                UpdateDate = reader.GetDateTime(6),
-                                Category = reader.GetString(7),
-                                Weight = reader.GetInt32(8)
+                                ProductName = reader.IsDBNull(1) ? null : reader.GetString(1),
+                                Quantity = reader.IsDBNull(2) ? 0 : reader.GetInt32(2),
+                                Price = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                                CreatedDate = reader.IsDBNull(4) ? DateTime.Now : reader.GetDateTime(4),
+                                UpdateDate = reader.IsDBNull(5) ? DateTime.Now : reader.GetDateTime(5),
+                                Category = reader.IsDBNull(6) ? null : reader.GetString(6),
+                                Unit = reader.IsDBNull(7) ? null : reader.GetString(7),
+                                Weight = reader.IsDBNull(8) ? 0 : reader.GetInt32(8)
                             };
                             products.Add(product);
                         }
