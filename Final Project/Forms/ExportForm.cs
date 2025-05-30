@@ -14,31 +14,30 @@ using System.Windows.Forms;
 
 namespace Final_Project.Forms
 {
-    public partial class PurchaseOrderForm : Form
+    public partial class ExportForm : Form
     {
         private IProductService _productService;
-        private IImportOrderService importOrderService;
-        private ImportOrder _importOrder;
+        private IExportOrderService exportOrderService;
+        private ExportOrder exportOrder;
         private BindingSource _bindingSource;
         private Product _product;
-        private IInventoryLogService inventoryLogService;
-        public PurchaseOrderForm()
+        private IExportLogService exportLogService;
+        public ExportForm()
         {
             InitializeComponent();
-
 
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
                 LoadService();
             }
 
-            PurchaseOrderForm_Load(this, EventArgs.Empty);
+            ExportOrderForm_Load(this, EventArgs.Empty);
         }
 
-        private void PurchaseOrderForm_Load(object sender, EventArgs e)
+        private void ExportOrderForm_Load(object sender, EventArgs e)
         {
             error_message_label.Visible = false;
-            
+
             // Turn off autocolumn
             product_datagridview.AutoGenerateColumns = false;
 
@@ -94,7 +93,7 @@ namespace Final_Project.Forms
             });
 
             // assign data source
-            _bindingSource.DataSource = _importOrder.ImportOrderDetail;
+            _bindingSource.DataSource = exportOrder.ExportOrderDetail;
             product_datagridview.DataSource = _bindingSource;
 
             // event when user edit quantity
@@ -108,7 +107,6 @@ namespace Final_Project.Forms
 
             name_textbox.KeyDown += Name_textbox_KeyDown;
         }
-
         // Handle Enter key press in name_textbox
         private void Name_textbox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -122,30 +120,6 @@ namespace Final_Project.Forms
                     add_button_Click(sender, e);
                 }
             }
-        }
-
-        private void Product_datagridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == product_datagridview.Columns["Quantity"].Index)
-            {
-                int quantity;
-                if (int.TryParse(product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out quantity) && quantity <= 0
-                    || quantity > 9999999)
-                {
-                    error_message_label.Text = "Invalid Quantity";
-                    error_message_label.Visible = true;
-                    product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
-                    _importOrder.ImportOrderDetail[e.RowIndex].Quantity = 1;
-                }
-                UpdateOrderSummary();
-            }
-        }
-        // update total price of import detail
-        private void UpdateOrderSummary()
-        {
-            _importOrder.UpdateTotal();
-            totalitem_label.Text = _importOrder.TotalQuantity.ToString();
-            totalamount_label.Text = _importOrder.TotalPrice.ToString("N0") + " đ";
         }
         // add button to add product
         private void add_button_Click(object sender, EventArgs e)
@@ -191,7 +165,7 @@ namespace Final_Project.Forms
         private void AddProductToOrder(Product product)
         {
             // Kiểm tra xem sản phẩm đã có trong đơn chưa
-            ImportOrderDetail existingDetail = _importOrder.ImportOrderDetail.Find(d => d.ProductId == product.ProductId);
+            ExportOrderDetail existingDetail = exportOrder.ExportOrderDetail.Find(d => d.ProductId == product.ProductId);
 
             if (existingDetail != null)
             {
@@ -201,7 +175,7 @@ namespace Final_Project.Forms
             else
             {
                 // Nếu chưa có, thêm mới
-                ImportOrderDetail detail = new ImportOrderDetail
+                ExportOrderDetail detail = new ExportOrderDetail
                 {
                     ProductId = product.ProductId,
                     Product = product,
@@ -210,13 +184,30 @@ namespace Final_Project.Forms
                     UnitPrice = product.Price
                 };
 
-                _importOrder.ImportOrderDetail.Add(detail);
+                exportOrder.ExportOrderDetail.Add(detail);
             }
 
             // Cập nhật dữ liệu
             _bindingSource.ResetBindings(false);
             UpdateOrderSummary();
         }
+        private void Product_datagridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == product_datagridview.Columns["Quantity"].Index)
+            {
+                int quantity;
+                if (int.TryParse(product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out quantity) && quantity <= 0
+                    || quantity > 9999999)
+                {
+                    error_message_label.Text = "Invalid Quantity";
+                    error_message_label.Visible = true;
+                    product_datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
+                    exportOrder.ExportOrderDetail[e.RowIndex].Quantity = 1;
+                }
+                UpdateOrderSummary();
+            }
+        }
+        // delete button
         private void delete_button_Click(object sender, EventArgs e)
         {
             if (product_datagridview.SelectedRows.Count == 0)
@@ -228,7 +219,7 @@ namespace Final_Project.Forms
 
             int rowIndex = product_datagridview.SelectedRows[0].Index;
 
-            _importOrder.ImportOrderDetail.RemoveAt(rowIndex);
+            exportOrder.ExportOrderDetail.RemoveAt(rowIndex);
             _bindingSource.ResetBindings(false);
             UpdateOrderSummary();
         }
@@ -236,14 +227,14 @@ namespace Final_Project.Forms
         private void save_button_Click(object sender, EventArgs e)
         {
             // check if supplier name is empty
-            if (string.IsNullOrEmpty(supplier_textbox.Text))
+            if (string.IsNullOrEmpty(address_textbox.Text))
             {
-                error_message_label.Text = "Please enter supplier name";
+                error_message_label.Text = "Please enter address";
                 error_message_label.Visible = true;
                 return;
             }
             // check if any product in order
-            if (_importOrder.ImportOrderDetail.Count == 0)
+            if (exportOrder.ExportOrderDetail.Count == 0)
             {
                 error_message_label.Text = "Please add product to order";
                 error_message_label.Visible = true;
@@ -267,29 +258,35 @@ namespace Final_Project.Forms
             try
             {
                 // Update infor
-                _importOrder.CreatedAt = DateTime.Now;
-                _importOrder.AdminId = SectionManager.Instance.CurrentAdmin.AdminId;
-                _importOrder.SupplierName = supplier_textbox.Text.Trim();
+                exportOrder.CreatedAt = DateTime.Now;
+                exportOrder.AdminId = SectionManager.Instance.CurrentAdmin.AdminId;
+                exportOrder.Address = address_textbox.Text.Trim();
 
-                int orderId = importOrderService.CreateImportOrder(_importOrder);
+                int orderId = exportOrderService.CreateExportOrder(exportOrder);
 
                 if (orderId > 0)
                 {
-                    MessageBox.Show("Import Order created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    inventoryLogService.ProcessInventoryUpdate(orderId);
-
+                    exportLogService.ProcessInventoryUpdate(orderId);
+                    MessageBox.Show("Export Order created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Tìm và refresh TransactionUserControl
                     var mainForm = Application.OpenForms.OfType<Form>().FirstOrDefault(f => f.Name == "MainForm"); // Thay "MainForm" bằng tên form chính của bạn
-                    var transactionControl = mainForm?.Controls.OfType<TransactionUserControl>().FirstOrDefault();
-                    transactionControl.RefreshData();
+                    var exportControl = mainForm?.Controls.OfType<ExportUserControlForm>().FirstOrDefault();
+                    exportControl.RefreshData();
 
                     this.Close();
                 }
+                
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void UpdateOrderSummary()
+        {
+            exportOrder.UpdateTotal();
+            totalitem_label.Text = exportOrder.TotalQuantity.ToString();
+            totalamount_label.Text = exportOrder.TotalPrice.ToString("N0") + " đ";
         }
         private void LoadService()
         {
@@ -298,14 +295,14 @@ namespace Final_Project.Forms
             _productService = new ProductService(productRepository);
             _bindingSource = new BindingSource();
             _product = new Product();
-            var importOrderRepository = new ImportOrderRepository(dbContext);
-            importOrderService = new ImportOrderService(importOrderRepository, _product);
-            _importOrder = new ImportOrder();
-            _importOrder.ImportOrderDetail = new List<ImportOrderDetail>();
+            var exportOrderRepository = new ExportOrderRepository(dbContext);
+            exportOrderService = new ExportOrderService(exportOrderRepository, _product);
+            exportOrder = new ExportOrder();
+            exportOrder.ExportOrderDetail = new List<ExportOrderDetail>();
 
             // Thêm dòng này để khởi tạo inventory service
-            var inventoryLogRepository = new InventoryLogRepository(dbContext);
-            inventoryLogService = new InventoryLogService(inventoryLogRepository);
+            var exportLogRepository = new ExportLogRepository(dbContext);
+            exportLogService = new ExportLogService(exportLogRepository);
         }
     }
 }

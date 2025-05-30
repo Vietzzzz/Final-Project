@@ -6,17 +6,18 @@ using Final_Project.DataAccess;
 using Final_Project.Models;
 using System;
 
+
 namespace Final_Project.BussinessLogic.Services
 {
-    public class ImportOrderService : IImportOrderService
+    public class ExportOrderService : IExportOrderService
     {
-        private IImportOrderRepository _importOrderRepository;
+        private IExportOrderRepository exportOrderRepository;
         private ProductRepository _productRepository;
         private Product _product;
 
-        public ImportOrderService(IImportOrderRepository importOrderRepository, Product product)
+        public ExportOrderService(IExportOrderRepository exportOrderRepository, Product product)
         {
-            _importOrderRepository = importOrderRepository;
+            this.exportOrderRepository = exportOrderRepository;
             _product = product;
 
             // Thêm ProductRepository để update stock
@@ -25,18 +26,18 @@ namespace Final_Project.BussinessLogic.Services
         }
 
         // create import order
-        public int CreateImportOrder(ImportOrder order)
+        public int CreateExportOrder(ExportOrder order)
         {
             // Validate the import order
-            if (order.ImportOrderDetail.Count == 0)
+            if (order.ExportOrderDetail.Count == 0)
             {
-                throw new Exception("There is nothing to import");
+                throw new Exception("There is nothing to export");
             }
 
             // check supplier name
-            if (string.IsNullOrEmpty(order.SupplierName))
+            if (string.IsNullOrEmpty(order.Address))
             {
-                throw new Exception("Supplier name is required");
+                throw new Exception("Address is required");
             }
 
             order.AdminId = SectionManager.Instance.CurrentAdmin.AdminId;
@@ -46,13 +47,13 @@ namespace Final_Project.BussinessLogic.Services
             order.UpdateTotal();
 
             // Tạo order trước
-            return _importOrderRepository.CreateImportOrder(order);
+            return exportOrderRepository.CreateExportOrder(order);
         }
 
         // Get import order by id
-        public ImportOrder GetImportOrderById(int id)
+        public ExportOrder GetExportOrderById(int id)
         {
-            return _importOrderRepository.GetOrderById(id);
+            return exportOrderRepository.GetOrderById(id);
         }
     }
 }

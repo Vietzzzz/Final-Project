@@ -40,7 +40,6 @@
             this.password_label = new System.Windows.Forms.Label();
             this.username_label = new System.Windows.Forms.Label();
             this.login_acc_label = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_picture_box)).BeginInit();
             this.SuspendLayout();
@@ -91,11 +90,11 @@
             this.company_name.BackColor = System.Drawing.Color.Transparent;
             this.company_name.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.company_name.ForeColor = System.Drawing.Color.White;
-            this.company_name.Location = new System.Drawing.Point(40, 241);
+            this.company_name.Location = new System.Drawing.Point(71, 246);
             this.company_name.Name = "company_name";
-            this.company_name.Size = new System.Drawing.Size(165, 54);
+            this.company_name.Size = new System.Drawing.Size(111, 54);
             this.company_name.TabIndex = 3;
-            this.company_name.Text = "Droppii";
+            this.company_name.Text = "DHV";
             // 
             // logo_picture_box
             // 
@@ -230,6 +229,5 @@
         private System.Windows.Forms.Label password_label;
         private System.Windows.Forms.Label username_label;
         private System.Windows.Forms.Label login_acc_label;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

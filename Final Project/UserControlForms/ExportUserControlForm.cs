@@ -5,13 +5,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
+
 namespace Final_Project.UserControlForms
 {
-    public partial class TransactionUserControl : UserControl
+    public partial class ExportUserControlForm : UserControl
     {
-        private InventoryLogService inventoryLogService;
-        
-        public TransactionUserControl()
+        private ExportLogService exportLogService;
+
+        public ExportUserControlForm()
         {
             InitializeComponent();
 
@@ -26,14 +27,17 @@ namespace Final_Project.UserControlForms
         public void DisplayDataGridView()
         {
             txn_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            txn_datagridview.ReadOnly = true;
-            txn_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            txn_datagridview.AllowUserToAddRows = false;
-            
-            DataTable logs = inventoryLogService.GetInventoryLogsForGrid();
+            // Cấu hình DataGridView
+            txn_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Cột tự động điều chỉnh để lấp đầy
+            txn_datagridview.ReadOnly = true; // Chỉ cho phép xem
+            txn_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Chọn toàn bộ hàng
+            txn_datagridview.AllowUserToAddRows = false; // Không cho phép thêm hàng mới
 
+            // Gán dữ liệu
+            DataTable logs = exportLogService.GetInventoryLogsForGrid();
             txn_datagridview.DataSource = logs;
 
+            // Ẩn cột Old Quantity
             txn_datagridview.Columns["Old Quantity"].Visible = false;
         }
         public void RefreshData()
@@ -43,8 +47,8 @@ namespace Final_Project.UserControlForms
         public void LoadService()
         {
             var dbContext = new DBContext();
-            var repository = new InventoryLogRepository(dbContext);
-            inventoryLogService = new InventoryLogService(repository);
+            var repository = new ExportLogRepository(dbContext);
+            exportLogService = new ExportLogService(repository);
         }
     }
 }

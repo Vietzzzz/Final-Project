@@ -122,5 +122,12 @@ namespace Final_Project.UserControlForms
 
             DisplayProduct(_productService.GetAllProducts());
         }
+        private void export_button_Click(object sender, EventArgs e)
+        {
+            ExportForm exportForm = new ExportForm();
+            exportForm.ShowDialog();
+
+            DisplayProduct(_productService.GetAllProducts());
+        }
     }
 }

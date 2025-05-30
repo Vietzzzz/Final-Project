@@ -26,23 +26,28 @@ namespace Final_Project.Forms
             home_usercontrol.Show();
             product_usercontrol.Hide();
             transaction_usercontrol.Hide();
+            export_usercontrol.Hide();
         }
         private void product_button_Click(object sender, EventArgs e)
         {
             home_usercontrol.Hide();
             product_usercontrol.Show();
             transaction_usercontrol.Hide();
+            export_usercontrol.Hide();
         }
         private void transaction_button_Click(object sender, EventArgs e)
         {
             home_usercontrol.Hide();
             product_usercontrol.Hide();
             transaction_usercontrol.Show();
+            export_usercontrol.Hide();
         }
-
-        private void productUserControl1_Load(object sender, EventArgs e)
+        private void export_button_click(object sender, EventArgs e)
         {
-
+            home_usercontrol.Hide();
+            product_usercontrol.Hide();
+            transaction_usercontrol.Hide();
+            export_usercontrol.Show();
         }
     }
 }

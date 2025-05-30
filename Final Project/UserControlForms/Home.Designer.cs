@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.main_panel = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.feature3_label = new System.Windows.Forms.Label();
@@ -45,6 +49,7 @@
             this.description_home = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.main_panel.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
@@ -56,6 +61,7 @@
             // main_panel
             // 
             this.main_panel.BackColor = System.Drawing.Color.White;
+            this.main_panel.Controls.Add(this.panel4);
             this.main_panel.Controls.Add(this.panel3);
             this.main_panel.Controls.Add(this.panel2);
             this.main_panel.Controls.Add(this.panel1);
@@ -65,8 +71,63 @@
             this.main_panel.Controls.Add(this.description_home);
             this.main_panel.Location = new System.Drawing.Point(24, 71);
             this.main_panel.Name = "main_panel";
-            this.main_panel.Size = new System.Drawing.Size(940, 538);
+            this.main_panel.Size = new System.Drawing.Size(1060, 538);
             this.main_panel.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Location = new System.Drawing.Point(22, 169);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1016, 150);
+            this.panel4.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(623, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(348, 37);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Tracking real-time inventory";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(266, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(339, 37);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Create import/export order";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(86, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(187, 37);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Product CRUD";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel3
             // 
@@ -75,7 +136,7 @@
             this.panel3.Controls.Add(this.feature3_label);
             this.panel3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.panel3.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel3.Location = new System.Drawing.Point(656, 379);
+            this.panel3.Location = new System.Drawing.Point(812, 379);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(226, 150);
             this.panel3.TabIndex = 6;
@@ -110,7 +171,7 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.feature2_label);
             this.panel2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel2.Location = new System.Drawing.Point(344, 379);
+            this.panel2.Location = new System.Drawing.Point(424, 379);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(226, 150);
             this.panel2.TabIndex = 5;
@@ -134,9 +195,9 @@
             this.feature2_label.ForeColor = System.Drawing.Color.Black;
             this.feature2_label.Location = new System.Drawing.Point(45, 15);
             this.feature2_label.Name = "feature2_label";
-            this.feature2_label.Size = new System.Drawing.Size(133, 25);
+            this.feature2_label.Size = new System.Drawing.Size(129, 25);
             this.feature2_label.TabIndex = 1;
-            this.feature2_label.Text = "Friendly UI/UX";
+            this.feature2_label.Text = "Easy for using";
             this.feature2_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // panel1
@@ -180,9 +241,9 @@
             this.why_choose_label.ForeColor = System.Drawing.Color.Black;
             this.why_choose_label.Location = new System.Drawing.Point(17, 338);
             this.why_choose_label.Name = "why_choose_label";
-            this.why_choose_label.Size = new System.Drawing.Size(195, 28);
+            this.why_choose_label.Size = new System.Drawing.Size(175, 28);
             this.why_choose_label.TabIndex = 3;
-            this.why_choose_label.Text = "Why Choose Droppi";
+            this.why_choose_label.Text = "Why Choose DHV";
             // 
             // description_content
             // 
@@ -192,7 +253,7 @@
             this.description_content.Location = new System.Drawing.Point(22, 50);
             this.description_content.Multiline = true;
             this.description_content.Name = "description_content";
-            this.description_content.Size = new System.Drawing.Size(860, 72);
+            this.description_content.Size = new System.Drawing.Size(1016, 72);
             this.description_content.TabIndex = 0;
             this.description_content.Text = resources.GetString("description_content.Text");
             // 
@@ -238,9 +299,11 @@
             this.Controls.Add(this.main_panel);
             this.Controls.Add(this.label1);
             this.Name = "Home";
-            this.Size = new System.Drawing.Size(997, 616);
+            this.Size = new System.Drawing.Size(1105, 616);
             this.main_panel.ResumeLayout(false);
             this.main_panel.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -272,5 +335,9 @@
         private System.Windows.Forms.Label main_function_textbox;
         private System.Windows.Forms.Label description_home;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Final_Project.Forms
 {
-    partial class PurchaseOrderForm
+    partial class ExportForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.product_datagridview = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.address_textbox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.error_message_label = new System.Windows.Forms.Label();
-            this.import_product_labe = new System.Windows.Forms.Label();
+            this.import_product_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.supplier_textbox = new System.Windows.Forms.TextBox();
             this.create_date_label = new System.Windows.Forms.Label();
             this.totalitem_label = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.add_button = new System.Windows.Forms.Button();
             this.name_textbox = new System.Windows.Forms.TextBox();
             this.save_button = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.product_datagridview)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -54,40 +54,60 @@
             // product_datagridview
             // 
             this.product_datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.product_datagridview.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.product_datagridview.DefaultCellStyle = dataGridViewCellStyle1;
             this.product_datagridview.Dock = System.Windows.Forms.DockStyle.Top;
-            this.product_datagridview.Location = new System.Drawing.Point(5, 0);
+            this.product_datagridview.Location = new System.Drawing.Point(0, 0);
             this.product_datagridview.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.product_datagridview.Name = "product_datagridview";
             this.product_datagridview.RowHeadersWidth = 51;
             this.product_datagridview.RowTemplate.Height = 24;
-            this.product_datagridview.Size = new System.Drawing.Size(872, 285);
-            this.product_datagridview.TabIndex = 2;
+            this.product_datagridview.Size = new System.Drawing.Size(882, 285);
+            this.product_datagridview.TabIndex = 3;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.supplier_textbox);
+            this.panel2.Controls.Add(this.address_textbox);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.error_message_label);
-            this.panel2.Controls.Add(this.import_product_labe);
+            this.panel2.Controls.Add(this.import_product_label);
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.delete_button);
             this.panel2.Controls.Add(this.add_button);
             this.panel2.Controls.Add(this.name_textbox);
             this.panel2.Controls.Add(this.save_button);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(5, 306);
+            this.panel2.Location = new System.Drawing.Point(0, 311);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(872, 175);
-            this.panel2.TabIndex = 5;
+            this.panel2.Size = new System.Drawing.Size(882, 175);
+            this.panel2.TabIndex = 6;
+            // 
+            // address_textbox
+            // 
+            this.address_textbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.address_textbox.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.address_textbox.Location = new System.Drawing.Point(283, 51);
+            this.address_textbox.Name = "address_textbox";
+            this.address_textbox.Size = new System.Drawing.Size(140, 30);
+            this.address_textbox.TabIndex = 23;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label5.Location = new System.Drawing.Point(279, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 23);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Address";
             // 
             // error_message_label
             // 
@@ -100,16 +120,16 @@
             this.error_message_label.TabIndex = 18;
             this.error_message_label.Text = "label1";
             // 
-            // import_product_labe
+            // import_product_label
             // 
-            this.import_product_labe.AutoSize = true;
-            this.import_product_labe.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.import_product_labe.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.import_product_labe.Location = new System.Drawing.Point(37, 19);
-            this.import_product_labe.Name = "import_product_labe";
-            this.import_product_labe.Size = new System.Drawing.Size(127, 23);
-            this.import_product_labe.TabIndex = 10;
-            this.import_product_labe.Text = "Import product";
+            this.import_product_label.AutoSize = true;
+            this.import_product_label.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.import_product_label.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.import_product_label.Location = new System.Drawing.Point(37, 19);
+            this.import_product_label.Name = "import_product_label";
+            this.import_product_label.Size = new System.Drawing.Size(124, 23);
+            this.import_product_label.TabIndex = 10;
+            this.import_product_label.Text = "Export product";
             // 
             // panel1
             // 
@@ -122,19 +142,10 @@
             this.panel1.Controls.Add(this.totalamount_label);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.panel1.Location = new System.Drawing.Point(505, 0);
+            this.panel1.Location = new System.Drawing.Point(515, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(367, 175);
             this.panel1.TabIndex = 24;
-            // 
-            // supplier_textbox
-            // 
-            this.supplier_textbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.supplier_textbox.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.supplier_textbox.Location = new System.Drawing.Point(283, 51);
-            this.supplier_textbox.Name = "supplier_textbox";
-            this.supplier_textbox.Size = new System.Drawing.Size(140, 30);
-            this.supplier_textbox.TabIndex = 23;
             // 
             // create_date_label
             // 
@@ -262,29 +273,16 @@
             this.save_button.UseVisualStyleBackColor = false;
             this.save_button.Click += new System.EventHandler(this.save_button_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label5.Location = new System.Drawing.Point(279, 19);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 23);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Supplier";
-            // 
-            // PurchaseOrderForm
+            // ExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 486);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.product_datagridview);
-            this.Name = "PurchaseOrderForm";
-            this.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
+            this.Name = "ExportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PurchaseOrderForm";
-            this.Load += new System.EventHandler(this.PurchaseOrderForm_Load);
+            this.Text = "ExportForm";
             ((System.ComponentModel.ISupportInitialize)(this.product_datagridview)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -294,22 +292,23 @@
         }
 
         #endregion
+
         private System.Windows.Forms.DataGridView product_datagridview;
-        private System.Windows.Forms.Button save_button;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label totalamount_label;
-        private System.Windows.Forms.TextBox name_textbox;
-        private System.Windows.Forms.Button add_button;
-        private System.Windows.Forms.Button delete_button;
-        private System.Windows.Forms.Label import_product_labe;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label error_message_label;
-        private System.Windows.Forms.Label totalitem_label;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label create_date_label;
-        private System.Windows.Forms.TextBox supplier_textbox;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox address_textbox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label error_message_label;
+        private System.Windows.Forms.Label import_product_label;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label create_date_label;
+        private System.Windows.Forms.Label totalitem_label;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label totalamount_label;
+        private System.Windows.Forms.Button delete_button;
+        private System.Windows.Forms.Button add_button;
+        private System.Windows.Forms.TextBox name_textbox;
+        private System.Windows.Forms.Button save_button;
     }
 }

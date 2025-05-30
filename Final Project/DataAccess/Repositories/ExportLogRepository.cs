@@ -5,17 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
+
 namespace Final_Project.DataAccess.Repositories
 {
-    public class InventoryLogRepository : IInventoryLogRepository
+    internal class ExportLogRepository : IExportLogRepository
     {
         private DBContext dbContext;
-        public InventoryLogRepository(DBContext dbContext)
+        public ExportLogRepository(DBContext dbContext)
         {
             this.dbContext = dbContext;
         }
         // Chạy stored procedure để cập nhật inventory và tạo log
-        public void UpdateInventoryAndLog(int purchaseOrderId, int adminId)
+        public void UpdateInventoryAndLog(int exportOrderId, int adminId)
         {
             using (var conn = dbContext.GetConnection())
             {
@@ -24,11 +25,11 @@ namespace Final_Project.DataAccess.Repositories
                 {
                     try
                     {
-                        string procedureCall = "CALL update_inventory_and_log(@p_purchase_order_id, @p_admin_id)";
+                        string procedureCall = "CALL export_inventory_and_log(@p_export_order_id, @p_admin_id)";
 
                         using (var cmd = new NpgsqlCommand(procedureCall, conn, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@p_purchase_order_id", purchaseOrderId);
+                            cmd.Parameters.AddWithValue("@p_export_order_id", exportOrderId);
                             cmd.Parameters.AddWithValue("@p_admin_id", adminId);
 
                             cmd.ExecuteNonQuery();
@@ -44,11 +45,10 @@ namespace Final_Project.DataAccess.Repositories
                 }
             }
         }
-
         // Lấy tất cả inventory logs để hiển thị trên DataGridView
-        public List<InventoryLog> GetAllInventoryLogs()
+        public List<ExportLog> GetAllInventoryLogs()
         {
-            List<InventoryLog> logs = new List<InventoryLog>();
+            List<ExportLog> logs = new List<ExportLog>();
 
             using (var conn = dbContext.GetConnection())
             {
@@ -57,15 +57,15 @@ namespace Final_Project.DataAccess.Repositories
                                     log_id,
                                     product_id,
                                     product_name,
-                                    quantity_added,
+                                    quantity_exported,
                                     old_quantity,
                                     new_quantity,
                                     unit_price,
                                     order_id,
                                     admin_id,
-                                    supplier,
+                                    delivery_address,
                                     created_at
-                                FROM inventory_log 
+                                FROM export_inventory_log 
                                 ORDER BY created_at DESC";
 
                 using (var cmd = new NpgsqlCommand(query, conn))
@@ -74,18 +74,18 @@ namespace Final_Project.DataAccess.Repositories
                     {
                         while (reader.Read())
                         {
-                            InventoryLog log = new InventoryLog
+                            ExportLog log = new ExportLog
                             {
                                 LogId = reader.GetInt32(reader.GetOrdinal("log_id")),
                                 AdminID = reader.GetInt32(reader.GetOrdinal("admin_id")),
                                 ProductId = reader.GetInt32(reader.GetOrdinal("product_id")),
                                 ProductName = reader.GetString(reader.GetOrdinal("product_name")),
-                                QuantityAdded = reader.GetInt32(reader.GetOrdinal("quantity_added")),
+                                QuantityExported = reader.GetInt32(reader.GetOrdinal("quantity_exported")),
                                 OldQuantity = reader.GetInt32(reader.GetOrdinal("old_quantity")),
                                 NewQuantity = reader.GetInt32(reader.GetOrdinal("new_quantity")),
                                 UnitPrice = reader.GetDecimal(reader.GetOrdinal("unit_price")),
                                 OrderId = reader.GetInt32(reader.GetOrdinal("order_id")),
-                                Supplier = reader.GetString(reader.GetOrdinal("supplier")),
+                                Address = reader.GetString(reader.GetOrdinal("delivery_address")),
                                 CreatedAt = reader.GetDateTime(reader.GetOrdinal("created_at"))
                             };
                             logs.Add(log);
@@ -93,14 +93,13 @@ namespace Final_Project.DataAccess.Repositories
                     }
                 }
             }
-
             return logs;
         }
 
         // Lấy inventory logs theo order ID
-        public List<InventoryLog> GetInventoryLogsByOrderId(int orderId)
+        public List<ExportLog> GetExportLogsByOrderId(int orderId)
         {
-            List<InventoryLog> logs = new List<InventoryLog>();
+            List<ExportLog> logs = new List<ExportLog>();
 
             using (var conn = dbContext.GetConnection())
             {
@@ -109,13 +108,13 @@ namespace Final_Project.DataAccess.Repositories
                                     log_id,
                                     product_id,
                                     product_name,
-                                    quantity_added,
+                                    quantity_exported,
                                     old_quantity,
                                     new_quantity,
                                     unit_price,
                                     order_id,
                                     admin_id,
-                                    supplier,
+                                    delivery_address,
                                     created_at
                                 FROM inventory_log 
                                 WHERE order_id = @orderId
@@ -129,18 +128,18 @@ namespace Final_Project.DataAccess.Repositories
                     {
                         while (reader.Read())
                         {
-                            InventoryLog log = new InventoryLog
+                            ExportLog log = new ExportLog
                             {
                                 LogId = reader.GetInt32(reader.GetOrdinal("log_id")),
                                 AdminID = reader.GetInt32(reader.GetOrdinal("admin_id")),
                                 ProductId = reader.GetInt32(reader.GetOrdinal("product_id")),
                                 ProductName = reader.GetString(reader.GetOrdinal("product_name")),
-                                QuantityAdded = reader.GetInt32(reader.GetOrdinal("quantity_added")),
+                                QuantityExported = reader.GetInt32(reader.GetOrdinal("quantity_exported")),
                                 OldQuantity = reader.GetInt32(reader.GetOrdinal("old_quantity")),
                                 NewQuantity = reader.GetInt32(reader.GetOrdinal("new_quantity")),
                                 UnitPrice = reader.GetDecimal(reader.GetOrdinal("unit_price")),
                                 OrderId = reader.GetInt32(reader.GetOrdinal("order_id")),
-                                Supplier = reader.GetString(reader.GetOrdinal("supplier")),
+                                Address = reader.GetString(reader.GetOrdinal("delivery_address")),
                                 CreatedAt = reader.GetDateTime(reader.GetOrdinal("created_at"))
                             };
                             logs.Add(log);
@@ -151,7 +150,6 @@ namespace Final_Project.DataAccess.Repositories
 
             return logs;
         }
-
         // Tạo DataTable để bind với DataGridView
         public DataTable GetInventoryLogsAsDataTable()
         {
@@ -165,14 +163,14 @@ namespace Final_Project.DataAccess.Repositories
                                     product_id as ""Product ID"",
                                     admin_id as ""AdminID"",
                                     product_name as ""Product Name"",
-                                    quantity_added as ""Quantity Added"",
+                                    quantity_exported as ""Quantity Exported"",
                                     old_quantity as ""Old Quantity"",
                                     new_quantity as ""New Quantity"",
                                     unit_price as ""Unit Price"",
                                     order_id as ""Order ID"",
-                                    supplier as ""Supplier"",
+                                    delivery_address as ""Address"",
                                     created_at as ""Created At""
-                                FROM inventory_log ";
+                                FROM export_inventory_log ";
 
                 using (var cmd = new NpgsqlCommand(query, conn))
                 {

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.export_button = new System.Windows.Forms.Button();
             this.company_name = new System.Windows.Forms.Label();
             this.panel_txn = new System.Windows.Forms.Panel();
             this.txn_btn = new System.Windows.Forms.Button();
@@ -39,9 +40,10 @@
             this.product_btn = new System.Windows.Forms.Button();
             this.exit_button = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.product_usercontrol = new Final_Project.UserControlForms.ProductUserControl();
-            this.transaction_usercontrol = new Final_Project.UserControlForms.TransactionUserControl();
             this.home_usercontrol = new Final_Project.UserControlForms.Home();
+            this.export_usercontrol = new Final_Project.UserControlForms.ExportUserControlForm();
+            this.transaction_usercontrol = new Final_Project.UserControlForms.TransactionUserControl();
+            this.product_usercontrol = new Final_Project.UserControlForms.ProductUserControl();
             this.panel1.SuspendLayout();
             this.panel_txn.SuspendLayout();
             this.panel_home.SuspendLayout();
@@ -53,6 +55,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.export_button);
             this.panel1.Controls.Add(this.company_name);
             this.panel1.Controls.Add(this.panel_txn);
             this.panel1.Controls.Add(this.panel_home);
@@ -63,6 +66,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(261, 658);
             this.panel1.TabIndex = 2;
+            // 
+            // export_button
+            // 
+            this.export_button.BackColor = System.Drawing.Color.White;
+            this.export_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.export_button.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.export_button.FlatAppearance.BorderSize = 0;
+            this.export_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.export_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.export_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.export_button.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.export_button.ForeColor = System.Drawing.Color.Black;
+            this.export_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.export_button.Location = new System.Drawing.Point(10, 502);
+            this.export_button.Name = "export_button";
+            this.export_button.Size = new System.Drawing.Size(236, 52);
+            this.export_button.TabIndex = 5;
+            this.export_button.Text = "EXPORT TRANSACTION";
+            this.export_button.UseVisualStyleBackColor = false;
+            this.export_button.Click += new System.EventHandler(this.export_button_click);
             // 
             // company_name
             // 
@@ -99,7 +122,7 @@
             this.txn_btn.Name = "txn_btn";
             this.txn_btn.Size = new System.Drawing.Size(236, 52);
             this.txn_btn.TabIndex = 4;
-            this.txn_btn.Text = "TRANSACTION";
+            this.txn_btn.Text = "IMPORT TRANSACTION";
             this.txn_btn.UseVisualStyleBackColor = true;
             this.txn_btn.Click += new System.EventHandler(this.transaction_button_Click);
             // 
@@ -180,7 +203,7 @@
             this.exit_button.Dock = System.Windows.Forms.DockStyle.Right;
             this.exit_button.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit_button.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.exit_button.Location = new System.Drawing.Point(949, 0);
+            this.exit_button.Location = new System.Drawing.Point(1069, 0);
             this.exit_button.Name = "exit_button";
             this.exit_button.Size = new System.Drawing.Size(36, 42);
             this.exit_button.TabIndex = 8;
@@ -193,39 +216,48 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(261, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(985, 42);
+            this.panel2.Size = new System.Drawing.Size(1105, 42);
             this.panel2.TabIndex = 9;
-            // 
-            // product_usercontrol
-            // 
-            this.product_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.product_usercontrol.Location = new System.Drawing.Point(261, 42);
-            this.product_usercontrol.Name = "product_usercontrol";
-            this.product_usercontrol.Size = new System.Drawing.Size(985, 616);
-            this.product_usercontrol.TabIndex = 10;
-            // 
-            // transaction_usercontrol
-            // 
-            this.transaction_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.transaction_usercontrol.Location = new System.Drawing.Point(261, 42);
-            this.transaction_usercontrol.Name = "transaction_usercontrol";
-            this.transaction_usercontrol.Size = new System.Drawing.Size(985, 616);
-            this.transaction_usercontrol.TabIndex = 11;
             // 
             // home_usercontrol
             // 
             this.home_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
             this.home_usercontrol.Location = new System.Drawing.Point(261, 42);
             this.home_usercontrol.Name = "home_usercontrol";
-            this.home_usercontrol.Size = new System.Drawing.Size(985, 616);
-            this.home_usercontrol.TabIndex = 12;
+            this.home_usercontrol.Size = new System.Drawing.Size(1105, 616);
+            this.home_usercontrol.TabIndex = 14;
+            // 
+            // export_usercontrol
+            // 
+            this.export_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.export_usercontrol.Location = new System.Drawing.Point(261, 42);
+            this.export_usercontrol.Name = "export_usercontrol";
+            this.export_usercontrol.Size = new System.Drawing.Size(1105, 616);
+            this.export_usercontrol.TabIndex = 13;
+            // 
+            // transaction_usercontrol
+            // 
+            this.transaction_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.transaction_usercontrol.Location = new System.Drawing.Point(261, 42);
+            this.transaction_usercontrol.Name = "transaction_usercontrol";
+            this.transaction_usercontrol.Size = new System.Drawing.Size(1105, 616);
+            this.transaction_usercontrol.TabIndex = 11;
+            // 
+            // product_usercontrol
+            // 
+            this.product_usercontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.product_usercontrol.Location = new System.Drawing.Point(261, 42);
+            this.product_usercontrol.Name = "product_usercontrol";
+            this.product_usercontrol.Size = new System.Drawing.Size(1105, 616);
+            this.product_usercontrol.TabIndex = 10;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 658);
+            this.ClientSize = new System.Drawing.Size(1366, 658);
             this.Controls.Add(this.home_usercontrol);
+            this.Controls.Add(this.export_usercontrol);
             this.Controls.Add(this.transaction_usercontrol);
             this.Controls.Add(this.product_usercontrol);
             this.Controls.Add(this.panel2);
@@ -259,8 +291,10 @@
         private System.Windows.Forms.Button product_btn;
         private System.Windows.Forms.Label exit_button;
         private System.Windows.Forms.Panel panel2;
-        private UserControlForms.Home home_usercontrol;
         private UserControlForms.TransactionUserControl transaction_usercontrol;
         private UserControlForms.ProductUserControl product_usercontrol;
+        private System.Windows.Forms.Button export_button;
+        private UserControlForms.ExportUserControlForm export_usercontrol;
+        private UserControlForms.Home home_usercontrol;
     }
 }

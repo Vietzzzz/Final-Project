@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.weight_label = new System.Windows.Forms.Label();
             this.product_infor_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,6 +42,7 @@
             this.name_textbox = new System.Windows.Forms.TextBox();
             this.name_label = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.export_button = new System.Windows.Forms.Button();
             this.weight_textbox = new System.Windows.Forms.NumericUpDown();
             this.quantity_textbox = new System.Windows.Forms.NumericUpDown();
             this.price_textbox = new System.Windows.Forms.NumericUpDown();
@@ -58,12 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.quantity_textbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.price_textbox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // weight_label
             // 
@@ -95,7 +88,7 @@
             this.panel1.Controls.Add(this.product_infor_label);
             this.panel1.Location = new System.Drawing.Point(14, 7);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(959, 372);
+            this.panel1.Size = new System.Drawing.Size(1076, 372);
             this.panel1.TabIndex = 2;
             // 
             // product_data_gridview
@@ -116,7 +109,7 @@
             this.product_data_gridview.RowHeadersWidth = 51;
             this.product_data_gridview.RowTemplate.Height = 24;
             this.product_data_gridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.product_data_gridview.Size = new System.Drawing.Size(959, 326);
+            this.product_data_gridview.Size = new System.Drawing.Size(1076, 326);
             this.product_data_gridview.TabIndex = 1;
             // 
             // category_label
@@ -210,6 +203,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.export_button);
             this.panel2.Controls.Add(this.weight_textbox);
             this.panel2.Controls.Add(this.quantity_textbox);
             this.panel2.Controls.Add(this.price_textbox);
@@ -228,8 +222,31 @@
             this.panel2.Controls.Add(this.name_label);
             this.panel2.Location = new System.Drawing.Point(14, 385);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(959, 218);
+            this.panel2.Size = new System.Drawing.Size(1076, 218);
             this.panel2.TabIndex = 3;
+            // 
+            // export_button
+            // 
+            this.export_button.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.export_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.export_button.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.export_button.FlatAppearance.BorderSize = 0;
+            this.export_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.export_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.export_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.export_button.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.export_button.ForeColor = System.Drawing.Color.Black;
+            this.export_button.Image = global::Final_Project.Properties.Resources.upload;
+            this.export_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.export_button.Location = new System.Drawing.Point(901, 162);
+            this.export_button.Name = "export_button";
+            this.export_button.Size = new System.Drawing.Size(140, 37);
+            this.export_button.TabIndex = 20;
+            this.export_button.Text = "Export";
+            this.export_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.export_button.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.export_button.UseVisualStyleBackColor = false;
+            this.export_button.Click += new System.EventHandler(this.export_button_Click);
             // 
             // weight_textbox
             // 
@@ -287,7 +304,7 @@
             this.delete_button.ForeColor = System.Drawing.Color.Black;
             this.delete_button.Image = global::Final_Project.Properties.Resources.ok;
             this.delete_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.delete_button.Location = new System.Drawing.Point(784, 119);
+            this.delete_button.Location = new System.Drawing.Point(712, 134);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(140, 65);
             this.delete_button.TabIndex = 16;
@@ -310,7 +327,7 @@
             this.search_button.ForeColor = System.Drawing.Color.Black;
             this.search_button.Image = global::Final_Project.Properties.Resources.search;
             this.search_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.search_button.Location = new System.Drawing.Point(784, 37);
+            this.search_button.Location = new System.Drawing.Point(901, 37);
             this.search_button.Name = "search_button";
             this.search_button.Size = new System.Drawing.Size(140, 65);
             this.search_button.TabIndex = 15;
@@ -331,11 +348,11 @@
             this.import_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.import_button.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.import_button.ForeColor = System.Drawing.Color.Black;
-            this.import_button.Image = global::Final_Project.Properties.Resources.ok;
+            this.import_button.Image = global::Final_Project.Properties.Resources.download;
             this.import_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.import_button.Location = new System.Drawing.Point(625, 119);
+            this.import_button.Location = new System.Drawing.Point(901, 119);
             this.import_button.Name = "import_button";
-            this.import_button.Size = new System.Drawing.Size(140, 65);
+            this.import_button.Size = new System.Drawing.Size(140, 37);
             this.import_button.TabIndex = 10;
             this.import_button.Text = "Import";
             this.import_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -356,7 +373,7 @@
             this.add_product_button.ForeColor = System.Drawing.Color.Black;
             this.add_product_button.Image = global::Final_Project.Properties.Resources.ok;
             this.add_product_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.add_product_button.Location = new System.Drawing.Point(625, 37);
+            this.add_product_button.Location = new System.Drawing.Point(712, 37);
             this.add_product_button.Name = "add_product_button";
             this.add_product_button.Size = new System.Drawing.Size(140, 65);
             this.add_product_button.TabIndex = 10;
@@ -373,7 +390,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "ProductUserControl";
-            this.Size = new System.Drawing.Size(995, 610);
+            this.Size = new System.Drawing.Size(1105, 616);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.product_data_gridview)).EndInit();
@@ -387,8 +404,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button import_button;
         private System.Windows.Forms.Label weight_label;
         private System.Windows.Forms.Label product_infor_label;
@@ -409,5 +424,6 @@
         private System.Windows.Forms.NumericUpDown weight_textbox;
         private System.Windows.Forms.NumericUpDown quantity_textbox;
         private System.Windows.Forms.NumericUpDown price_textbox;
+        private System.Windows.Forms.Button export_button;
     }
 }
